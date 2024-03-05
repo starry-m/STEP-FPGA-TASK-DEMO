@@ -14,7 +14,11 @@ input				uart_rx,		//UART接收输入
 
 output				seg_rck,		//74HC595的RCK管脚
 output				seg_sck,		//74HC595的SCK管脚
-output				seg_din		//74HC595的SER管脚
+output				seg_din,		//74HC595的SER管脚
+
+input		[3:0]	col,
+output	    [3:0]	row,
+output			    beeper
 );
 wire clk_60m;//actual 48m
 pll u_pll(.CLKI(clk_12m ), .CLKOP( clk_60m));
@@ -55,5 +59,14 @@ display_ctl u_display_ctl(
 	.seg_rck(seg_rck),		//74HC595的RCK管脚
 	.seg_sck(seg_sck),		//74HC595的SCK管脚
 	.seg_din(seg_din)		//74HC595的SER管脚
+);
+
+
+electric_piano u_electric_piano(
+    .clk(clk_12m),			//system clock
+    .rst_n(rst_n),		//system reset
+	.col(col),
+	.row(row),
+	.beeper(beeper)
 );
 endmodule
