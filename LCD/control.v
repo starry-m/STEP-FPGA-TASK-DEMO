@@ -8,8 +8,8 @@ module  control
     input   wire             init_done           ,
     input   wire     [8:0]   show_pic_data      ,
     input   wire             en_write_show_pic  ,
-	 input   wire				  show_pic_done,
-    
+	input   wire				  show_pic_done,
+    output reg [8:0]col_pos,
 	 output  reg             show_pic_flag      ,
 	 
     output  reg      [8:0]   data                ,
@@ -17,6 +17,14 @@ module  control
 );
 
 reg     [1:0]   cnt1;
+
+always@(posedge sys_clk_50MHz or negedge sys_rst_n)
+    if(!sys_rst_n)
+        col_pos <= 9'd0;
+    else if(show_pic_done && col_pos< 9'd319)
+        col_pos <=col_pos+9'd1;
+    else 
+        col_pos <=col_pos;
 
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
@@ -51,7 +59,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         show_pic_flag <= 1'b0;
-    else if(cnt1 == 'd2)
+    else if(cnt1 == 'd2 || show_pic_done)
         show_pic_flag <= 1'b1;
     else
         show_pic_flag <= 1'b0;        

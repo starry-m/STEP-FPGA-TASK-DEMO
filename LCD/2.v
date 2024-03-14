@@ -4,9 +4,11 @@ module lcd_show_row (input wire sys_clk,
                      input wire show_pic_flag,        //显示字符标志信号
                      input wire [8:0] col_pos,
                      input wire [7:0] rom_q,
-                     output wire [8:0] rom_addr,
+                     output  [8:0] rom_addr,
                      output wire [8:0] show_pic_data, //传输的命令或者数??
                      output wire show_pic_done,
+                     output wire [3:0] register_r,
+                     output reg  [3:0] cnt_set_windows,
                      output wire en_write_show_pic);
     
     //****************** Parameter and Internal Signal *******************//
@@ -22,11 +24,11 @@ module lcd_show_row (input wire sys_clk,
     
     //???????????
     reg  [3:0] state;
-    
+    assign register_r=state;
     /*wr_done 打一??*/
     reg          the1_wr_done;
     //设置显示窗口
-    reg  [3:0] cnt_set_windows;
+    // reg  [3:0] cnt_set_windows;
     
     //??????STATE1跳转到STATE2的标志信??
     reg          state1_finish_flag;
@@ -85,24 +87,31 @@ module lcd_show_row (input wire sys_clk,
         else state1_finish_flag <= 1'b0;
         /*前面完成了窗口大小位置的设置,后面完成两个颜色数据的传??*/
     
+    always@(posedge sys_clk or negedge sys_rst_n)
+    if(!sys_rst_n)  
+        cnt_rom_prepare <= 'd0;
+    else if(length_num_flag)
+        cnt_rom_prepare <= 'd0;
+    else if(state == STATE2 && cnt_rom_prepare < 'd5)
+        cnt_rom_prepare <= cnt_rom_prepare + 1'b1;
     reg en_state2_flag;
     always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)  en_state2_flag<=1'b0;
     else if(state == STATE2) en_state2_flag<=1'b1;
     else if(state == DONE) en_state2_flag<=1'b0;
     else en_state2_flag <= en_state2_flag;
-    
+
+
     reg [8:0] rom_data_index;
     assign rom_addr=rom_data_index;
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) rom_data_index <= 0;
-        else if (state == STATE0)  rom_data_index <= 0;
         else if (state == STATE2 && the1_wr_done && rom_data_index < SIZE_WIDTH_MAX)  rom_data_index <= rom_data_index+1'b1;
         else  rom_data_index <= rom_data_index;
     
     always @(posedge sys_clk or negedge sys_rst_n)
-        if (!sys_rst_n)  temp <= 16'd0;
-        else temp<= {temp[7:0],rom_q};
+        if (!sys_rst_n)  temp <= 'd0;
+        else temp             <= {temp[7:0],rom_q};
     
     //长度??1标志信号
     always@(posedge sys_clk or negedge sys_rst_n)
@@ -117,7 +126,7 @@ module lcd_show_row (input wire sys_clk,
         else
             length_num_flag <= 1'b0;
     
-    //the cmd and data which whill transmit
+    //要传输的命令???????????
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) data <= 9'h000;
         else if (state == STATE1)
@@ -132,17 +141,13 @@ module lcd_show_row (input wire sys_clk,
             7: data       <= {1'b1, col_pos[7:0]};
             8: data       <= {1'b1, 7'h00,col_pos_temp[8]};
             9: data       <= {1'b1, col_pos_temp[7:0]};  //319
-            // 6: data       <= {1'b1, 8'h00};
-            // 7: data       <= {1'b1, 8'h05};
-            // 8: data       <= {1'b1, 8'h00};
-            // 9: data       <= {1'b1, 8'h06};  //319
             10: data      <= 9'h02C;
             default: data <= 9'h000;
         endcase
         else if (state == STATE2)
-            data <= {1'b1,temp[15:8]};
+        data <= {1'b1,temp[15:8]};
     
-        else data <= data;
+    else data <= data;
     
     //??????STATE2跳转到DONE的标志信??
     assign state2_finish_flag = (
@@ -154,7 +159,7 @@ module lcd_show_row (input wire sys_clk,
     
     //输出端口
     assign show_pic_data     = data;
-    assign en_write_show_pic = (state == STATE1 || en_state2_flag ) ? 1'b1 : 1'b0;
+    assign en_write_show_pic = (state == STATE1 || en_state2_flag) ? 1'b1 : 1'b0;
     assign show_pic_done     = (state == DONE) ? 1'b1 : 1'b0;
     
     

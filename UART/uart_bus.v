@@ -23,11 +23,11 @@ module uart_bus #(
 
 		input					uart_rx,		//UART接收输入
 		output				rx_data_valid,	//接收数据有效脉冲
-		output	[7:0]		rx_data_out		//接收到的数据
+		output	[7:0]		rx_data_out,		//接收到的数据
 
-		//input					tx_data_valid,	//发送数据有效脉冲
-		//input			[7:0]	tx_data_in,		//要发送的数据
-		//output				uart_tx			//UART发送输出
+		input					tx_data_valid,	//发送数据有效脉冲
+		input			[7:0]	tx_data_in,		//要发送的数据
+		output				uart_tx			//UART发送输出
 );	
 	
 /////////////////////////////////UART接收功能模块例化////////////////////////////////////
@@ -58,7 +58,7 @@ uart_rx uart_rx_uut(
 	);
 	
 /////////////////////////////////UART发送功能模块例化////////////////////////////////////
-/*
+
 wire					bps_en_tx,bps_clk_tx;
 
 //UART发送波特率时钟控制模块 例化
@@ -83,5 +83,6 @@ uart_tx uart_tx_uut(
 		.tx_data_in(tx_data_in),		//要发送的数据
 		.uart_tx(uart_tx)					//UART发送输出
 	);
-*/
+
+
 endmodule

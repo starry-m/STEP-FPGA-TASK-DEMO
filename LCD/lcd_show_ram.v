@@ -1,32 +1,29 @@
 
 `timescale 1 ns / 100 ps
-//Ò»´Î±£´æ20ĞĞµÄ16Î»Êı¾İ,240*16*20
-//»¹ÊÇÒ»ĞĞ°É 240*16=480*8
-//¸ñÊ½»¯²å¼ş:SystemVerilog and Verilog Formatter
+
+//ï¿½?æ¬¡ä¿ï¿½?20è¡Œçš„16ä½æ•°ï¿½?,240*16*20
+//è¿˜æ˜¯ï¿½?è¡Œå§ 240*16 = 480*8
+//æ ¼å¼åŒ–æ’ï¿½?:SystemVerilog and Verilog Formatter
 //lcd_show_ram.v
-module lcd_show_ram #(
-    parameter DATA_WDTH = 4'd8,  //ÊäÈëÊı¾İµÄÎ»¿í
-    parameter COL       = 480,   //RAMÖĞÊı¾İ¸öÊı
-    parameter COL_BITS  = 9      //µØÖ·ÏßÎ»Êı
-) (
-    input                 clk,    //Ê±ÖÓĞÅºÅ
-    input [ COL_BITS-1:0] addra,  //Ğ´ÈëÊı¾İµÄµØÖ·
-    input [DATA_WDTH-1:0] dina,   //Ğ´ÈëµÄÊı¾İ
-    input                 W_EN,   //Ğ´ÓĞĞ§ĞÅºÅ
-
-    input  [ COL_BITS-1:0] addrb,  //Êä³öÊı¾İµÄµØÖ·
-    output [DATA_WDTH-1:0] doutb   //Êä³öµÄÊı¾İ
-);
-
-  reg [DATA_WDTH-1:0] mem[0:COL-1];  //¶¨ÒåRAM
-
-  assign doutb = mem[addrb+0];
-
-  always @(posedge clk) begin
-    if( W_EN == 1'b1 )							//Ğ´ÓĞĞ§Ê±ºò£¬°ÑdinaĞ´Èëµ½addra´¦
-    begin
-      mem[addra] <= dina;
-    end else;
-  end
-
+module lcd_show_ram #(parameter DATA_WDTH = 4'd8,    //è¾“å…¥æ•°æ®çš„ä½ï¿½?
+                      parameter COL = 480,           //RAMä¸­æ•°æ®ä¸ªï¿½?
+                      parameter COL_BITS = 9)
+                     (input clk,                     //æ—¶é’Ÿä¿¡å·
+                      input [COL_BITS-1:0] addra,   //å†™å…¥æ•°æ®çš„åœ°ï¿½?
+                      input [DATA_WDTH-1:0] dina,    //å†™å…¥çš„æ•°ï¿½?
+                      input W_EN,                    //å†™æœ‰æ•ˆä¿¡ï¿½?
+                      input [COL_BITS-1:0] addrb,   //è¾“å‡ºæ•°æ®çš„åœ°ï¿½?
+                      output [DATA_WDTH-1:0] doutb); //è¾“å‡ºçš„æ•°ï¿½?
+    
+    reg [DATA_WDTH-1:0] mem[0:COL-1];  //å®šä¹‰RAM
+    
+    assign doutb = mem[addrb+0];
+    
+    always @(posedge clk) begin
+        if (W_EN == 1'b1)							//å†™æœ‰æ•ˆæ—¶å€™ï¼ŒæŠŠdinaå†™å…¥åˆ°addraï¿½?
+        begin
+        mem[addra] <= dina;
+        end else;
+    end
+    
 endmodule
