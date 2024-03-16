@@ -5,7 +5,7 @@
 // 
 // Author: Step
 // 
-// Description: Real time display with segment led_out of UART£¨´®¿Ú£©
+// Description: Real time display with segment led_out of UARTï¼ˆä¸²å£ï¼‰
 // 
 // Web: www.stepfapga.com
 // 
@@ -16,27 +16,27 @@
 // V1.0     |2016/04/20   |Initial ver
 // --------------------------------------------------------------------
 module display_ctl (
-		input					clk,			//ÏµÍ³Ê±ÖÓ 12MHz
-		input					rst_n,		//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
+		input					clk,			//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		input					rst_n,		//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
 
-		input					uart_rx,		//UART½ÓÊÕÊäÈë
+		input					uart_rx,		//UARTæ¥æ”¶è¾“å…¥
 
-		output				seg_rck,		//74HC595µÄRCK¹Ü½Å
-		output				seg_sck,		//74HC595µÄSCK¹Ü½Å
-		output				seg_din		//74HC595µÄSER¹Ü½Å
+		output				seg_rck,		//74HC595çš„RCKç®¡è„š
+		output				seg_sck,		//74HC595çš„SCKç®¡è„š
+		output				seg_din		//74HC595çš„SERç®¡è„š
 	);	
 
-//`define HEX_FORMAT  //´®¿ÚÖúÊÖÊ¹ÓÃHex¸ñÊ½·¢ËÍÊ±¶¨ÒåHEX_FORMAT£¬·ñÔò²»¶¨Òå
+//`define HEX_FORMAT  //ä¸²å£åŠ©æ‰‹ä½¿ç”¨Hexæ ¼å¼å‘é€æ—¶å®šä¹‰HEX_FORMATï¼Œå¦åˆ™ä¸å®šä¹‰
 
 wire rx_data_valid;
 wire [7:0]	rx_data_out;
 //Uart_Bus module
 uart_bus u1(	
-		.clk(clk),							//ÏµÍ³Ê±ÖÓ 12MHz
-		.rst_n(rst_n),						//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
-		.uart_rx(uart_rx),				//UART½ÓÊÕÊäÈë
-		.rx_data_valid(rx_data_valid),//½ÓÊÕÊı¾İÓĞĞ§Âö³å
-		.rx_data_out(rx_data_out)		//½ÓÊÕµ½µÄÊı¾İ
+		.clk(clk),							//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		.rst_n(rst_n),						//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
+		.uart_rx(uart_rx),				//UARTæ¥æ”¶è¾“å…¥
+		.rx_data_valid(rx_data_valid),//æ¥æ”¶æ•°æ®æœ‰æ•ˆè„‰å†²
+		.rx_data_out(rx_data_out)		//æ¥æ”¶åˆ°çš„æ•°æ®
 	);
 
 wire [7:0] data_en;
@@ -44,29 +44,29 @@ wire [31:0] seg_data;
 //
 decoder u2(
 		.rst_n(rst_n),
-		.rx_data_valid(rx_data_valid),//½ÓÊÕÊı¾İÓĞĞ§Âö³å
-		.rx_data_out(rx_data_out),		//½ÓÊÕµ½µÄÊı¾İ
-		.data_en(data_en),				//ÊıÂë¹ÜÊı¾İÏÔÊ¾Ê¹ÄÜ
-		.seg_data(seg_data)				//ÊıÂë¹ÜÊı¾İBCDÂë
+		.rx_data_valid(rx_data_valid),//æ¥æ”¶æ•°æ®æœ‰æ•ˆè„‰å†²
+		.rx_data_out(rx_data_out),		//æ¥æ”¶åˆ°çš„æ•°æ®
+		.data_en(data_en),				//æ•°ç ç®¡æ•°æ®æ˜¾ç¤ºä½¿èƒ½
+		.seg_data(seg_data)				//æ•°ç ç®¡æ•°æ®BCDç 
 	);
 
 //segment_scan display module
 segment_scan u3(
-		.clk			(clk					),	//ÏµÍ³Ê±ÖÓ 12MHz
-		.rst_n		(rst_n				),	//ÏµÍ³¸´Î» µÍÓĞĞ§
-		.dat_1		(seg_data[31:28]	),	//SEG1 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_2		(seg_data[27:24]	),	//SEG2 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_3		(seg_data[23:20]	),	//SEG3 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_4		(seg_data[19:16]	),	//SEG4 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_5		(seg_data[15:12]	),	//SEG5 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_6		(seg_data[11: 8]	),	//SEG6 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_7		(seg_data[ 7: 4]	),	//SEG7 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_8		(seg_data[ 3: 0]	),	//SEG8 ÏÔÊ¾µÄÊı¾İÊäÈë
-		.dat_en		(data_en				),	//ÊıÂë¹ÜÊı¾İÎ»ÏÔÊ¾Ê¹ÄÜ£¬[MSB~LSB]=[SEG1~SEG8]
-		.dot_en		(8'b0000_0000		),	//ÊıÂë¹ÜĞ¡ÊıµãÎ»ÏÔÊ¾Ê¹ÄÜ£¬[MSB~LSB]=[SEG1~SEG8]
-		.seg_rck		(seg_rck				),	//74HC595µÄRCK¹Ü½Å
-		.seg_sck		(seg_sck				),	//74HC595µÄSCK¹Ü½Å
-		.seg_din		(seg_din				)	//74HC595µÄSER¹Ü½Å
+		.clk			(clk					),	//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		.rst_n		(rst_n				),	//ç³»ç»Ÿå¤ä½ ä½æœ‰æ•ˆ
+		.dat_1		(seg_data[31:28]	),	//SEG1 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_2		(seg_data[27:24]	),	//SEG2 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_3		(seg_data[23:20]	),	//SEG3 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_4		(seg_data[19:16]	),	//SEG4 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_5		(seg_data[15:12]	),	//SEG5 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_6		(seg_data[11: 8]	),	//SEG6 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_7		(seg_data[ 7: 4]	),	//SEG7 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_8		(seg_data[ 3: 0]	),	//SEG8 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		.dat_en		(data_en				),	//æ•°ç ç®¡æ•°æ®ä½æ˜¾ç¤ºä½¿èƒ½ï¼Œ[MSB~LSB]=[SEG1~SEG8]
+		.dot_en		(8'b0000_0000		),	//æ•°ç ç®¡å°æ•°ç‚¹ä½æ˜¾ç¤ºä½¿èƒ½ï¼Œ[MSB~LSB]=[SEG1~SEG8]
+		.seg_rck		(seg_rck				),	//74HC595çš„RCKç®¡è„š
+		.seg_sck		(seg_sck				),	//74HC595çš„SCKç®¡è„š
+		.seg_din		(seg_din				)	//74HC595çš„SERç®¡è„š
 	);
 
 endmodule

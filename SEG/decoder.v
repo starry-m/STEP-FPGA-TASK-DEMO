@@ -1,17 +1,17 @@
 
 module decoder(
-		input					rst_n,			//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
-		input					rx_data_valid,	//½ÓÊÕÊı¾İÓĞĞ§Âö³å
-		input			[7:0]	rx_data_out,	//½ÓÊÕµ½µÄÊı¾İ
-		output reg	[7:0]	data_en,		//½ÓÊÕµ½µÄÊı¾İ
+		input					rst_n,			//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
+		input					rx_data_valid,	//æ¥æ”¶æ•°æ®æœ‰æ•ˆè„‰å†²
+		input			[7:0]	rx_data_out,	//æ¥æ”¶åˆ°çš„æ•°æ®
+		output reg	[7:0]	data_en,		//æ¥æ”¶åˆ°çš„æ•°æ®
 		output reg	[31:0]seg_data
 	);
 
-`ifdef HEX_FORMAT //Èç¹ûÓÃdefine¶¨Òå¹ıHEX_FORMAT
-	//²ÉÓÃ16½øÖÆ¸ñÊ½£¬½ÓÊÕµ½µÄÊı¾İµÈÓÚÊıÖµ±¾Éí
+`ifdef HEX_FORMAT //å¦‚æœç”¨defineå®šä¹‰è¿‡HEX_FORMAT
+	//é‡‡ç”¨16è¿›åˆ¶æ ¼å¼ï¼Œæ¥æ”¶åˆ°çš„æ•°æ®ç­‰äºæ•°å€¼æœ¬èº«
 	wire [7:0] seg_data_r = rx_data_out;
 
-	//ÒÆÎ»¼Ä´æÆ÷£¬¶ÔÓ¦8Î»ÊıÂë¹ÜÊı¾İBCDÂë
+	//ç§»ä½å¯„å­˜å™¨ï¼Œå¯¹åº”8ä½æ•°ç ç®¡æ•°æ®BCDç 
 	always @ (posedge rx_data_valid or negedge rst_n) begin
 		if(!rst_n) 
 			seg_data <= 1'b0;
@@ -19,7 +19,7 @@ module decoder(
 			seg_data <= {seg_data[23:0],seg_data_r};
 	end
 
-	//ÒÆÎ»¼Ä´æÆ÷£¬¶ÔÓ¦8Î»ÊıÂë¹ÜÊı¾İÏÔÊ¾Ê¹ÄÜ
+	//ç§»ä½å¯„å­˜å™¨ï¼Œå¯¹åº”8ä½æ•°ç ç®¡æ•°æ®æ˜¾ç¤ºä½¿èƒ½
 	always @ (posedge rx_data_valid or negedge rst_n) begin
 		if(!rst_n) 
 			data_en <= 1'b0;
@@ -27,10 +27,10 @@ module decoder(
 			data_en <= {data_en[5:0],2'b11};
 	end
 `else
-	//²ÉÓÃ×Ö·û¸ñÊ½£¬½ÓÊÕµ½µÄÊı¾İÎª×Ö·ûASCIIÂëÖµ£¬ÓëÊı×ÖÖµÏà²î48
+	//é‡‡ç”¨å­—ç¬¦æ ¼å¼ï¼Œæ¥æ”¶åˆ°çš„æ•°æ®ä¸ºå­—ç¬¦ASCIIç å€¼ï¼Œä¸æ•°å­—å€¼ç›¸å·®48
 	wire [7:0] seg_data_r = rx_data_out - 8'd48;
 
-	//ÒÆÎ»¼Ä´æÆ÷£¬¶ÔÓ¦8Î»ÊıÂë¹ÜÊı¾İBCDÂë
+	//ç§»ä½å¯„å­˜å™¨ï¼Œå¯¹åº”8ä½æ•°ç ç®¡æ•°æ®BCDç 
 	always @ (posedge rx_data_valid or negedge rst_n) begin
 		if(!rst_n) 
 			seg_data <= 1'b0;
@@ -38,7 +38,7 @@ module decoder(
 			seg_data <= {seg_data[27:0],seg_data_r[3:0]};
 	end
 
-	//ÒÆÎ»¼Ä´æÆ÷£¬¶ÔÓ¦8Î»ÊıÂë¹ÜÊı¾İÏÔÊ¾Ê¹ÄÜ
+	//ç§»ä½å¯„å­˜å™¨ï¼Œå¯¹åº”8ä½æ•°ç ç®¡æ•°æ®æ˜¾ç¤ºä½¿èƒ½
 	always @ (posedge rx_data_valid or negedge rst_n) begin
 		if(!rst_n) 
 			data_en <= 1'b0;

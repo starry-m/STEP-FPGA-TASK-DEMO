@@ -23,20 +23,20 @@ module beeper(
 	);
 
 wire [15:0]	cycle;
-//½«°´¼üĞÅÏ¢Òë³ÉÒô½Ú¶ÔÓ¦µÄÖÜÆÚcycleÖµ
+//å°†æŒ‰é”®ä¿¡æ¯è¯‘æˆéŸ³èŠ‚å¯¹åº”çš„å‘¨æœŸcycleå€¼
 tone u1(
 		.key_in(key_out),
 		.cycle(cycle)
 );
 
-//¸ù¾İ²»Í¬Òô½ÚµÄÖÜÆÚcycleÖµ²úÉú¶ÔÓ¦µÄPWMĞÅºÅ
+//æ ¹æ®ä¸åŒéŸ³èŠ‚çš„å‘¨æœŸcycleå€¼äº§ç”Ÿå¯¹åº”çš„PWMä¿¡å·
 pwm #(
 		.WIDTH(16)			//ensure that 2**WIDTH > cycle
 	) u2(
 		.clk(clk),
 		.rst_n(rst_n),
 		.cycle(cycle),		//cycle > duty
-		.duty(cycle>>1),	//duty=cycle/2,²úÉú50%Õ¼¿Õ±È
+		.duty(cycle>>1),	//duty=cycle/2,äº§ç”Ÿ50%å ç©ºæ¯”
 		.pwm_out(beeper)
 );
 	

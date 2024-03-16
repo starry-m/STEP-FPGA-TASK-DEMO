@@ -16,72 +16,72 @@
 // V1.0     |2016/04/20   |Initial ver
 // --------------------------------------------------------------------
 module uart_bus #(
-		parameter				BPS_PARA = 1250 	//12MHzÊ±ÖÓÊ±²ÎÊı1250¶ÔÓ¦9600µÄ²¨ÌØÂÊ
+		parameter				BPS_PARA = 125 	//12MHzæ—¶é’Ÿæ—¶å‚æ•°1250å¯¹åº”9600çš„æ³¢ç‰¹ç‡
 	)(
-		input					clk,			//ÏµÍ³Ê±ÖÓ 12MHz
-		input					rst_n,			//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
+		input					clk,			//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		input					rst_n,			//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
 
-		input					uart_rx,		//UART½ÓÊÕÊäÈë
-		output				rx_data_valid,	//½ÓÊÕÊı¾İÓĞĞ§Âö³å
-		output	[7:0]		rx_data_out,		//½ÓÊÕµ½µÄÊı¾İ
+		input					uart_rx,		//UARTæ¥æ”¶è¾“å…¥
+		output				rx_data_valid,	//æ¥æ”¶æ•°æ®æœ‰æ•ˆè„‰å†²
+		output	[7:0]		rx_data_out,		//æ¥æ”¶åˆ°çš„æ•°æ®
 
-		input					tx_data_valid,	//·¢ËÍÊı¾İÓĞĞ§Âö³å
-		input			[7:0]	tx_data_in,		//Òª·¢ËÍµÄÊı¾İ
-		output				uart_tx			//UART·¢ËÍÊä³ö
+		input					tx_data_valid,	//å‘é€æ•°æ®æœ‰æ•ˆè„‰å†²
+		input			[7:0]	tx_data_in,		//è¦å‘é€çš„æ•°æ®
+		output				uart_tx			//UARTå‘é€è¾“å‡º
 );	
 	
-/////////////////////////////////UART½ÓÊÕ¹¦ÄÜÄ£¿éÀı»¯////////////////////////////////////
+/////////////////////////////////UARTæ¥æ”¶åŠŸèƒ½æ¨¡å—ä¾‹åŒ–////////////////////////////////////
 
 wire					bps_en_rx,bps_clk_rx;
 
-//UART½ÓÊÕ²¨ÌØÂÊÊ±ÖÓ¿ØÖÆÄ£¿é Àı»¯
+//UARTæ¥æ”¶æ³¢ç‰¹ç‡æ—¶é’Ÿæ§åˆ¶æ¨¡å— ä¾‹åŒ–
 baud #(
 		.BPS_PARA(BPS_PARA)
 	)baud_rx(	
-		.clk(clk),				//ÏµÍ³Ê±ÖÓ 12MHz
-		.rst_n(rst_n),			//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
-		.bps_en(bps_en_rx),	//½ÓÊÕÊ±ÖÓÊ¹ÄÜ
-		.bps_clk(bps_clk_rx)	//½ÓÊÕÊ±ÖÓÊä³ö
+		.clk(clk),				//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		.rst_n(rst_n),			//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
+		.bps_en(bps_en_rx),	//æ¥æ”¶æ—¶é’Ÿä½¿èƒ½
+		.bps_clk(bps_clk_rx)	//æ¥æ”¶æ—¶é’Ÿè¾“å‡º
 	);
 
-//UART½ÓÊÕÊı¾İÄ£¿é Àı»¯
+//UARTæ¥æ”¶æ•°æ®æ¨¡å— ä¾‹åŒ–
 uart_rx uart_rx_uut(
-		.clk(clk),							//ÏµÍ³Ê±ÖÓ 12MHz
-		.rst_n(rst_n),						//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
+		.clk(clk),							//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		.rst_n(rst_n),						//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
 		
-		.bps_en(bps_en_rx),				//½ÓÊÕÊ±ÖÓÊ¹ÄÜ
-		.bps_clk(bps_clk_rx),			//½ÓÊÕÊ±ÖÓÊäÈë
+		.bps_en(bps_en_rx),				//æ¥æ”¶æ—¶é’Ÿä½¿èƒ½
+		.bps_clk(bps_clk_rx),			//æ¥æ”¶æ—¶é’Ÿè¾“å…¥
 		
-		.uart_rx(uart_rx),				//UART½ÓÊÕÊäÈë
-		.rx_data_valid(rx_data_valid),//½ÓÊÕÊı¾İÓĞĞ§Âö³å
-		.rx_data_out(rx_data_out)		//½ÓÊÕµ½µÄÊı¾İ
+		.uart_rx(uart_rx),				//UARTæ¥æ”¶è¾“å…¥
+		.rx_data_valid(rx_data_valid),//æ¥æ”¶æ•°æ®æœ‰æ•ˆè„‰å†²
+		.rx_data_out(rx_data_out)		//æ¥æ”¶åˆ°çš„æ•°æ®
 	);
 	
-/////////////////////////////////UART·¢ËÍ¹¦ÄÜÄ£¿éÀı»¯////////////////////////////////////
+/////////////////////////////////UARTå‘é€åŠŸèƒ½æ¨¡å—ä¾‹åŒ–////////////////////////////////////
 
 wire					bps_en_tx,bps_clk_tx;
 
-//UART·¢ËÍ²¨ÌØÂÊÊ±ÖÓ¿ØÖÆÄ£¿é Àı»¯
+//UARTå‘é€æ³¢ç‰¹ç‡æ—¶é’Ÿæ§åˆ¶æ¨¡å— ä¾‹åŒ–
 baud # (
 		.BPS_PARA				(BPS_PARA		)
 	) baud_tx(
-		.clk(clk),				//ÏµÍ³Ê±ÖÓ 12MHz
-		.rst_n(rst_n),			//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
-		.bps_en(bps_en_tx),	//·¢ËÍÊ±ÖÓÊ¹ÄÜ
-		.bps_clk(bps_clk_tx)	//·¢ËÍÊ±ÖÓÊä³ö
+		.clk(clk),				//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		.rst_n(rst_n),			//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
+		.bps_en(bps_en_tx),	//å‘é€æ—¶é’Ÿä½¿èƒ½
+		.bps_clk(bps_clk_tx)	//å‘é€æ—¶é’Ÿè¾“å‡º
 	);
 
-//UART·¢ËÍÊı¾İÄ£¿é Àı»¯
+//UARTå‘é€æ•°æ®æ¨¡å— ä¾‹åŒ–
 uart_tx uart_tx_uut(
-		.clk(clk),							//ÏµÍ³Ê±ÖÓ 12MHz
-		.rst_n(rst_n),						//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
+		.clk(clk),							//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		.rst_n(rst_n),						//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
 		
-		.bps_en(bps_en_tx),				//·¢ËÍÊ±ÖÓÊ¹ÄÜ
-		.bps_clk(bps_clk_tx),			//·¢ËÍÊ±ÖÓÊäÈë
+		.bps_en(bps_en_tx),				//å‘é€æ—¶é’Ÿä½¿èƒ½
+		.bps_clk(bps_clk_tx),			//å‘é€æ—¶é’Ÿè¾“å…¥
 		
-		.tx_data_valid(tx_data_valid),//·¢ËÍÊı¾İÓĞĞ§Âö³å
-		.tx_data_in(tx_data_in),		//Òª·¢ËÍµÄÊı¾İ
-		.uart_tx(uart_tx)					//UART·¢ËÍÊä³ö
+		.tx_data_valid(tx_data_valid),//å‘é€æ•°æ®æœ‰æ•ˆè„‰å†²
+		.tx_data_in(tx_data_in),		//è¦å‘é€çš„æ•°æ®
+		.uart_tx(uart_tx)					//UARTå‘é€è¾“å‡º
 	);
 
 

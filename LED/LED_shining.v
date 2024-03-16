@@ -4,7 +4,7 @@ input rst_n,    //rst_n, active low
 output led1,    //led1 output
 output led2     //led2 output
 );
- //Á÷Ë®µÆÊ¾Àı
+
 parameter CNT_1S = 'd12_000_000 - 1;
 parameter CNT_05S = CNT_1S>>1; 
 reg [23:0] cnt; 

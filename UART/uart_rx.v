@@ -16,41 +16,41 @@
 // V1.0     |2016/04/20   |Initial ver
 // --------------------------------------------------------------------
 module uart_rx(
-		input					clk,			//ÏµÍ³Ê±ÖÓ 12MHz
-		input					rst_n,			//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
+		input					clk,			//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		input					rst_n,			//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
 		
-		output	reg		bps_en,			//½ÓÊÕÊ±ÖÓÊ¹ÄÜ
-		input					bps_clk,		//½ÓÊÕÊ±ÖÓÊäÈë
+		output	reg		bps_en,			//æ¥æ”¶æ—¶é’Ÿä½¿èƒ½
+		input					bps_clk,		//æ¥æ”¶æ—¶é’Ÿè¾“å…¥
 		
-		input					uart_rx,		//UART½ÓÊÕÊäÈë
-		output	reg		rx_data_valid,	//½ÓÊÕÊı¾İÓĞĞ§Âö³å
-		output	reg		[7:0]	rx_data_out		//½ÓÊÕµ½µÄÊı¾İ
+		input					uart_rx,		//UARTæ¥æ”¶è¾“å…¥
+		output	reg		rx_data_valid,	//æ¥æ”¶æ•°æ®æœ‰æ•ˆè„‰å†²
+		output	reg		[7:0]	rx_data_out		//æ¥æ”¶åˆ°çš„æ•°æ®
 	);	
 
 reg	uart_rx0,uart_rx1,uart_rx2;	
-//¶à¼¶ÑÓÊ±Ëø´æÈ¥³ıÑÇÎÈÌ¬
+//å¤šçº§å»¶æ—¶é”å­˜å»é™¤äºšç¨³æ€
 always @ (posedge clk) begin
 	uart_rx0 <= uart_rx;
 	uart_rx1 <= uart_rx0;
 	uart_rx2 <= uart_rx1;
 end
 
-//¼ì²âUART½ÓÊÕÊäÈëĞÅºÅµÄÏÂ½µÑØ
+//æ£€æµ‹UARTæ¥æ”¶è¾“å…¥ä¿¡å·çš„ä¸‹é™æ²¿
 wire	neg_uart_rx = uart_rx2 & ~uart_rx1;	
 		
 reg				[3:0]	num;			
-//½ÓÊÕÊ±ÖÓÊ¹ÄÜĞÅºÅµÄ¿ØÖÆ
+//æ¥æ”¶æ—¶é’Ÿä½¿èƒ½ä¿¡å·çš„æ§åˆ¶
 always @ (posedge clk or negedge rst_n) begin
 	if(!rst_n)
 		bps_en <= 1'b0;
-	else if(neg_uart_rx && (!bps_en))	//µ±¿ÕÏĞ×´Ì¬£¨bps_enÎªµÍµçÆ½£©Ê±¼ì²âµ½UART½ÓÊÕĞÅºÅÏÂ½µÑØ£¬½øÈë¹¤×÷×´Ì¬£¨bps_enÎª¸ßµçÆ½£©£¬¿ØÖÆÊ±ÖÓÄ£¿é²úÉú½ÓÊÕÊ±ÖÓ
+	else if(neg_uart_rx && (!bps_en))	//å½“ç©ºé—²çŠ¶æ€ï¼ˆbps_enä¸ºä½ç”µå¹³ï¼‰æ—¶æ£€æµ‹åˆ°UARTæ¥æ”¶ä¿¡å·ä¸‹é™æ²¿ï¼Œè¿›å…¥å·¥ä½œçŠ¶æ€ï¼ˆbps_enä¸ºé«˜ç”µå¹³ï¼‰ï¼Œæ§åˆ¶æ—¶é’Ÿæ¨¡å—äº§ç”Ÿæ¥æ”¶æ—¶é’Ÿ
 		bps_en <= 1'b1;		
-	else if(num==4'd9)		            //µ±Íê³ÉÒ»´ÎUART½ÓÊÕ²Ù×÷ºó£¬ÍË³ö¹¤×÷×´Ì¬£¬»Ö¸´¿ÕÏĞ×´Ì¬
+	else if(num==4'd9)		            //å½“å®Œæˆä¸€æ¬¡UARTæ¥æ”¶æ“ä½œåï¼Œé€€å‡ºå·¥ä½œçŠ¶æ€ï¼Œæ¢å¤ç©ºé—²çŠ¶æ€
 		bps_en <= 1'b0;			
 end
 
 reg				[7:0]	rx_data;
-//µ±´¦ÓÚ¹¤×÷×´Ì¬ÖĞÊ±£¬°´ÕÕ½ÓÊÕÊ±ÖÓµÄ½ÚÅÄ»ñÈ¡Êı¾İ
+//å½“å¤„äºå·¥ä½œçŠ¶æ€ä¸­æ—¶ï¼ŒæŒ‰ç…§æ¥æ”¶æ—¶é’Ÿçš„èŠ‚æ‹è·å–æ•°æ®
 always @ (posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		num <= 4'd0;
@@ -58,8 +58,8 @@ always @ (posedge clk or negedge rst_n) begin
 	end else if(bps_en) begin	
 		if(bps_clk) begin			
 			num <= num + 1'b1;
-			if(num<=4'd8) rx_data[num-1] <= uart_rx1; //ÏÈ½ÓÊÜµÍÎ»ÔÙ½ÓÊÕ¸ßÎ»£¬8Î»ÓĞĞ§Êı¾İ
-		end else if(num == 4'd9) begin		          //Íê³ÉÒ»´ÎUART½ÓÊÕ²Ù×÷ºó£¬½«»ñÈ¡µÄÊı¾İÊä³ö
+			if(num<=4'd8) rx_data[num-1] <= uart_rx1; //å…ˆæ¥å—ä½ä½å†æ¥æ”¶é«˜ä½ï¼Œ8ä½æœ‰æ•ˆæ•°æ®
+		end else if(num == 4'd9) begin		          //å®Œæˆä¸€æ¬¡UARTæ¥æ”¶æ“ä½œåï¼Œå°†è·å–çš„æ•°æ®è¾“å‡º
 			num <= 4'd0;				
 		end
 	end else begin
@@ -67,7 +67,7 @@ always @ (posedge clk or negedge rst_n) begin
 	end
 end
 
-//½«½ÓÊÕµÄÊı¾İÊä³ö£¬Í¬Ê±¿ØÖÆÊä³öÓĞĞ§ĞÅºÅ²úÉúÂö³å
+//å°†æ¥æ”¶çš„æ•°æ®è¾“å‡ºï¼ŒåŒæ—¶æ§åˆ¶è¾“å‡ºæœ‰æ•ˆä¿¡å·äº§ç”Ÿè„‰å†²
 always @ (posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		rx_data_out <= 8'd0;

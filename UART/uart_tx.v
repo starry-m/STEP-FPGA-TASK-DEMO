@@ -16,33 +16,33 @@
 // V1.0     |2016/04/20   |Initial ver
 // --------------------------------------------------------------------
 module uart_tx(
-		input					clk,				//ÏµÍ³Ê±ÖÓ 12MHz
-		input					rst_n,			//ÏµÍ³¸´Î»£¬µÍÓĞĞ§
+		input					clk,				//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		input					rst_n,			//ç³»ç»Ÿå¤ä½ï¼Œä½æœ‰æ•ˆ
 		
-		output	reg		bps_en,			//·¢ËÍÊ±ÖÓÊ¹ÄÜ
-		input					bps_clk,			//·¢ËÍÊ±ÖÓÊäÈë
+		output	reg		bps_en,			//å‘é€æ—¶é’Ÿä½¿èƒ½
+		input					bps_clk,			//å‘é€æ—¶é’Ÿè¾“å…¥
 		
-		input					tx_data_valid,	//·¢ËÍÊı¾İÓĞĞ§Âö³å
-		input			[7:0]	tx_data_in,		//Òª·¢ËÍµÄÊı¾İ
-		output	reg		uart_tx			//UART·¢ËÍÊä³ö
+		input					tx_data_valid,	//å‘é€æ•°æ®æœ‰æ•ˆè„‰å†²
+		input			[7:0]	tx_data_in,		//è¦å‘é€çš„æ•°æ®
+		output	reg		uart_tx			//UARTå‘é€è¾“å‡º
 	);
 
 reg				[3:0]	num;
-reg				[9:0]	tx_data_r;	//ÈÚºÏÁËÆğÊ¼Î»ºÍÍ£Ö¹Î»µÄÊı¾İ
-//Çı¶¯·¢ËÍÊı¾İ²Ù×÷
+reg				[9:0]	tx_data_r;	//èåˆäº†èµ·å§‹ä½å’Œåœæ­¢ä½çš„æ•°æ®
+//é©±åŠ¨å‘é€æ•°æ®æ“ä½œ
 always @ (posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		bps_en <= 1'b0;
 		tx_data_r <= 10'd0;
 	end else if(tx_data_valid && (!bps_en))begin	
-		bps_en <= 1'b1;		//µ±¼ì²âµ½½ÓÊÕÊ±ÖÓÊ¹ÄÜĞÅºÅµÄÏÂ½µÑØ£¬±íÃ÷½ÓÊÕÍê³É£¬ĞèÒª·¢ËÍÊı¾İ£¬Ê¹ÄÜ·¢ËÍÊ±ÖÓÊ¹ÄÜĞÅºÅ
+		bps_en <= 1'b1;		//å½“æ£€æµ‹åˆ°æ¥æ”¶æ—¶é’Ÿä½¿èƒ½ä¿¡å·çš„ä¸‹é™æ²¿ï¼Œè¡¨æ˜æ¥æ”¶å®Œæˆï¼Œéœ€è¦å‘é€æ•°æ®ï¼Œä½¿èƒ½å‘é€æ—¶é’Ÿä½¿èƒ½ä¿¡å·
 		tx_data_r <= {1'b1,tx_data_in,1'b0};	
 	end else if(num==4'd10) begin	
-		bps_en <= 1'b0;		//Ò»´ÎUART·¢ËÍĞèÒª10¸öÊ±ÖÓĞÅºÅ£¬È»ºó½áÊø
+		bps_en <= 1'b0;		//ä¸€æ¬¡UARTå‘é€éœ€è¦10ä¸ªæ—¶é’Ÿä¿¡å·ï¼Œç„¶åç»“æŸ
 	end
 end
 
-//µ±´¦ÓÚ¹¤×÷×´Ì¬ÖĞÊ±£¬°´ÕÕ·¢ËÍÊ±ÖÓµÄ½ÚÅÄ·¢ËÍÊı¾İ
+//å½“å¤„äºå·¥ä½œçŠ¶æ€ä¸­æ—¶ï¼ŒæŒ‰ç…§å‘é€æ—¶é’Ÿçš„èŠ‚æ‹å‘é€æ•°æ®
 always @ (posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		num <= 1'b0;

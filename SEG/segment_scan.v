@@ -16,24 +16,24 @@
 // V1.0     |2015/11/11   |Initial ver
 // --------------------------------------------------------------------
 module segment_scan(
-		input				clk,			//ÏµÍ³Ê±ÖÓ 12MHz
-		input				rst_n,		//ÏµÍ³¸´Î» µÍÓĞĞ§
-		input		[3:0]	dat_1,		//SEG1 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_2,		//SEG2 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_3,		//SEG3 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_4,		//SEG4 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_5,		//SEG5 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_6,		//SEG6 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_7,		//SEG7 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[3:0]	dat_8,		//SEG8 ÏÔÊ¾µÄÊı¾İÊäÈë
-		input		[7:0]	dat_en,		//ÊıÂë¹ÜÊı¾İÎ»ÏÔÊ¾Ê¹ÄÜ£¬[MSB~LSB]=[SEG1~SEG8]
-		input		[7:0]	dot_en,		//ÊıÂë¹ÜĞ¡ÊıµãÎ»ÏÔÊ¾Ê¹ÄÜ£¬[MSB~LSB]=[SEG1~SEG8]
-		output	reg	seg_rck,		//74HC595µÄRCK¹Ü½Å
-		output	reg	seg_sck,		//74HC595µÄSCK¹Ü½Å
-		output	reg	seg_din		//74HC595µÄSER¹Ü½Å
+		input				clk,			//ç³»ç»Ÿæ—¶é’Ÿ 12MHz
+		input				rst_n,		//ç³»ç»Ÿå¤ä½ ä½æœ‰æ•ˆ
+		input		[3:0]	dat_1,		//SEG1 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_2,		//SEG2 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_3,		//SEG3 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_4,		//SEG4 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_5,		//SEG5 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_6,		//SEG6 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_7,		//SEG7 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[3:0]	dat_8,		//SEG8 æ˜¾ç¤ºçš„æ•°æ®è¾“å…¥
+		input		[7:0]	dat_en,		//æ•°ç ç®¡æ•°æ®ä½æ˜¾ç¤ºä½¿èƒ½ï¼Œ[MSB~LSB]=[SEG1~SEG8]
+		input		[7:0]	dot_en,		//æ•°ç ç®¡å°æ•°ç‚¹ä½æ˜¾ç¤ºä½¿èƒ½ï¼Œ[MSB~LSB]=[SEG1~SEG8]
+		output	reg	seg_rck,		//74HC595çš„RCKç®¡è„š
+		output	reg	seg_sck,		//74HC595çš„SCKç®¡è„š
+		output	reg	seg_din		//74HC595çš„SERç®¡è„š
 	);
 
-localparam	CNT_40KHz = 300;	//·ÖÆµÏµÊı
+localparam	CNT_40KHz = 300;	//åˆ†é¢‘ç³»æ•°
 
 localparam	IDLE	=	3'd0;
 localparam	MAIN	=	3'd1;
@@ -41,8 +41,8 @@ localparam	WRITE	=	3'd2;
 localparam	LOW		=	1'b0;
 localparam	HIGH	=	1'b1;
 
-//´´½¨ÊıÂë¹ÜµÄ×Ö¿â£¬×Ö¿âÊı¾İÒÀ¶ÎÂëË³ĞòÓĞ¹Ø
-//ÕâÀï×Ö¿âÊı¾İ[MSB~LSB]={G,F,E,D,C,B,A}
+//åˆ›å»ºæ•°ç ç®¡çš„å­—åº“ï¼Œå­—åº“æ•°æ®ä¾æ®µç é¡ºåºæœ‰å…³
+//è¿™é‡Œå­—åº“æ•°æ®[MSB~LSB]={G,F,E,D,C,B,A}
 reg[6:0] seg [15:0]; 
 always @(negedge rst_n) begin
     seg[0]	=	7'h3f;   // 0
@@ -63,7 +63,7 @@ always @(negedge rst_n) begin
     seg[15]	=	7'h71;   // F
 end 
 	
-//¼ÆÊıÆ÷¶ÔÏµÍ³Ê±ÖÓĞÅºÅ½øĞĞ¼ÆÊı
+//è®¡æ•°å™¨å¯¹ç³»ç»Ÿæ—¶é’Ÿä¿¡å·è¿›è¡Œè®¡æ•°
 reg [9:0] cnt = 1'b0;
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) cnt <= 1'b0;
@@ -71,7 +71,7 @@ always@(posedge clk or negedge rst_n) begin
 	else cnt <= cnt + 1'b1;
 end
 
-//¸ù¾İ¼ÆÊıÆ÷¼ÆÊıµÄÖÜÆÚ²úÉú·ÖÆµµÄÂö³åĞÅºÅ
+//æ ¹æ®è®¡æ•°å™¨è®¡æ•°çš„å‘¨æœŸäº§ç”Ÿåˆ†é¢‘çš„è„‰å†²ä¿¡å·
 reg clk_40khz = 1'b0; 
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) clk_40khz <= 1'b0;
@@ -79,29 +79,29 @@ always@(posedge clk or negedge rst_n) begin
 	else clk_40khz <= 1'b1;
 end
 
-//Ê¹ÓÃ×´Ì¬»úÍê³ÉÊıÂë¹ÜµÄÉ¨ÃèºÍ74HC595Ê±ĞòµÄÊµÏÖ
+//ä½¿ç”¨çŠ¶æ€æœºå®Œæˆæ•°ç ç®¡çš„æ‰«æå’Œ74HC595æ—¶åºçš„å®ç°
 reg		[15:0]		data;
 reg		[2:0]		cnt_main;
 reg		[5:0]		cnt_write;
 reg		[2:0] 		state = IDLE;
 always@(posedge clk_40khz or negedge rst_n) begin
-	if(!rst_n) begin	//¸´Î»×´Ì¬ÏÂ£¬¸÷¼Ä´æÆ÷ÖÃ³õÖµ
+	if(!rst_n) begin	//å¤ä½çŠ¶æ€ä¸‹ï¼Œå„å¯„å­˜å™¨ç½®åˆå€¼
 		state <= IDLE;
 		cnt_main <= 3'd0; cnt_write <= 6'd0;
 		seg_din <= 1'b0; seg_sck <= LOW; seg_rck <= LOW;
 	end else begin
 		case(state)
-			IDLE:begin	//IDLE×÷ÎªµÚÒ»¸ö×´Ì¬£¬Ïàµ±ÓÚÈí¸´Î»
+			IDLE:begin	//IDLEä½œä¸ºç¬¬ä¸€ä¸ªçŠ¶æ€ï¼Œç›¸å½“äºè½¯å¤ä½
 					state <= MAIN;
 					cnt_main <= 3'd0; cnt_write <= 6'd0;
 					seg_din <= 1'b0; seg_sck <= LOW; seg_rck <= LOW;
 				end
 			MAIN:begin
 					cnt_main <= cnt_main + 1'b1;
-					state <= WRITE;		//ÔÚÅäÖÃÍê·¢¸ø74HC595µÄÊı¾İÍ¬Ê±Ìø×ªÖÁWRITE×´Ì¬£¬Íê³É´®ĞĞÊ±Ğò
+					state <= WRITE;		//åœ¨é…ç½®å®Œå‘ç»™74HC595çš„æ•°æ®åŒæ—¶è·³è½¬è‡³WRITEçŠ¶æ€ï¼Œå®Œæˆä¸²è¡Œæ—¶åº
 					case(cnt_main)
-						//¶Ô8Î»ÊıÂë¹ÜÖğÎ»É¨Ãè
-						//data          [15:8]Îª¶ÎÑ¡£¬         [7:0]ÎªÎ»Ñ¡
+						//å¯¹8ä½æ•°ç ç®¡é€ä½æ‰«æ
+						//data          [15:8]ä¸ºæ®µé€‰ï¼Œ         [7:0]ä¸ºä½é€‰
 						3'd0: data <= {{dot_en[7],seg[dat_1]},dat_en[7]?8'hfe:8'hff};
 						3'd1: data <= {{dot_en[6],seg[dat_2]},dat_en[6]?8'hfd:8'hff}; 
 						3'd2: data <= {{dot_en[5],seg[dat_3]},dat_en[5]?8'hfb:8'hff}; 
@@ -117,10 +117,10 @@ always@(posedge clk_40khz or negedge rst_n) begin
 					if(cnt_write >= 6'd33) cnt_write <= 1'b0;
 					else cnt_write <= cnt_write + 1'b1;
 					case(cnt_write)
-						//74HC595ÊÇ´®ĞĞ×ª²¢ĞĞµÄĞ¾Æ¬£¬3Â·ÊäÈë¿É²úÉú8Â·Êä³ö£¬¶øÇÒ¿ÉÒÔ¼¶ÁªÊ¹ÓÃ
-						//74HC595µÄÊ±ĞòÊµÏÖ£¬²Î¿¼74HC595µÄĞ¾Æ¬ÊÖ²á
-						6'd0:  begin seg_sck <= LOW; seg_din <= data[15]; end		//SCKÏÂ½µÑØÊ±SER¸üĞÂÊı¾İ
-						6'd1:  begin seg_sck <= HIGH; end							//SCKÉÏÉıÑØÊ±SERÊı¾İÎÈ¶¨
+						//74HC595æ˜¯ä¸²è¡Œè½¬å¹¶è¡Œçš„èŠ¯ç‰‡ï¼Œ3è·¯è¾“å…¥å¯äº§ç”Ÿ8è·¯è¾“å‡ºï¼Œè€Œä¸”å¯ä»¥çº§è”ä½¿ç”¨
+						//74HC595çš„æ—¶åºå®ç°ï¼Œå‚è€ƒ74HC595çš„èŠ¯ç‰‡æ‰‹å†Œ
+						6'd0:  begin seg_sck <= LOW; seg_din <= data[15]; end		//SCKä¸‹é™æ²¿æ—¶SERæ›´æ–°æ•°æ®
+						6'd1:  begin seg_sck <= HIGH; end							//SCKä¸Šå‡æ²¿æ—¶SERæ•°æ®ç¨³å®š
 						6'd2:  begin seg_sck <= LOW; seg_din <= data[14]; end
 						6'd3:  begin seg_sck <= HIGH; end
 						6'd4:  begin seg_sck <= LOW; seg_din <= data[13]; end
@@ -151,7 +151,7 @@ always@(posedge clk_40khz or negedge rst_n) begin
 						6'd29: begin seg_sck <= HIGH; end
 						6'd30: begin seg_sck <= LOW; seg_din <= data[0]; end
 						6'd31: begin seg_sck <= HIGH; end
-						6'd32: begin seg_rck <= HIGH; end								//µ±16Î»Êı¾İ´«ËÍÍê³ÉºóRCKÀ­¸ß£¬Êä³öÉúĞ§
+						6'd32: begin seg_rck <= HIGH; end								//å½“16ä½æ•°æ®ä¼ é€å®ŒæˆåRCKæ‹‰é«˜ï¼Œè¾“å‡ºç”Ÿæ•ˆ
 						6'd33: begin seg_rck <= LOW; state <= MAIN; end
 						default: ;
 					endcase

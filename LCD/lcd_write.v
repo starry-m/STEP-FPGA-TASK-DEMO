@@ -15,17 +15,17 @@ module  lcd_write
 );
 
 //****************** Parameter and Internal Signal *******************//
-//ÉèÖÃspiµÄÄ£Ê½£¬·Ö±ğÎª
-//Ä£Ê½0£ºCPOL = 0, CPHA = 0;
-//Ä£Ê½1£ºCPOL = 0, CPHA = 1;
-//Ä£Ê½2£ºCPOL = 1, CPHA = 0;
-//Ä£Ê½3£ºCPOL = 1, CPHA = 1;
-parameter CPOL = 1'b0;  //Ê±ÖÓ¼«ĞÔ
-parameter CPHA = 1'b0;  //Ê±ÖÓÏàÎ»
+//è®¾ç½®spiçš„æ¨¡å¼ï¼Œåˆ†åˆ«ä¸º
+//æ¨¡å¼0ï¼šCPOL = 0, CPHA = 0;
+//æ¨¡å¼1ï¼šCPOL = 0, CPHA = 1;
+//æ¨¡å¼2ï¼šCPOL = 1, CPHA = 0;
+//æ¨¡å¼3ï¼šCPOL = 1, CPHA = 1;
+parameter CPOL = 1'b0;  //æ—¶é’Ÿææ€§
+parameter CPHA = 1'b0;  //æ—¶é’Ÿç›¸ä½
 
-parameter DELAY_TIME = 3'd4; //²»ÄÜĞ¡ÓÚ3
+parameter DELAY_TIME = 3'd4; //ä¸èƒ½å°äº3
 
-parameter CNT_SCLK_MAX = 4'd4; //²»ÄÜĞ¡ÓÚ3
+parameter CNT_SCLK_MAX = 4'd4; //ä¸èƒ½å°äº3
 
 parameter STATE0 = 4'b0_001;
 parameter STATE1 = 4'b0_010;
@@ -46,7 +46,7 @@ reg             sclk_flag;
 reg             state2_finish_flag;
 
 //******************************* Main Code **************************// 
-//ÊµÏÖ×´Ì¬µÄÌø×ª
+//å®ç°çŠ¶æ€çš„è·³è½¬
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         state <= STATE0;
@@ -59,7 +59,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
         endcase
         
 //----------------------------------------------------------------- 
-//¼ÆÊıÆ÷cnt_delayÓÃÀ´ÑÓ³Ù
+//è®¡æ•°å™¨cnt_delayç”¨æ¥å»¶è¿Ÿ
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_delay <= 'd0;
@@ -70,7 +70,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else
         cnt_delay <= 'd0;
 
-//¼ÆÊıÆ÷cnt1£¬ÅäºÏsclk_flagÀ´Ö¸Ê¾mosiµÄ¸üĞÂºÍ±£³Ö¡£
+//è®¡æ•°å™¨cnt1ï¼Œé…åˆsclk_flagæ¥æŒ‡ç¤ºmosiçš„æ›´æ–°å’Œä¿æŒã€‚
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt1 <= 'd0;
@@ -79,7 +79,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else if(state == STATE2 && cnt_sclk == CNT_SCLK_MAX)
         cnt1 <= cnt1 + 1'b1;
         
-//¼ÆÊıÆ÷cnt_sclk¾ö¶¨spiµÄÊ±ÖÓ       
+//è®¡æ•°å™¨cnt_sclkå†³å®šspiçš„æ—¶é’Ÿ       
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_sclk <= 'd0;
@@ -88,11 +88,11 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else if(state == STATE2 && cnt_sclk < CNT_SCLK_MAX)
         cnt_sclk <= cnt_sclk + 1'b1;
          
-//Ê±ÖÓsclkµÄ±êÖ¾ĞÅºÅ
+//æ—¶é’Ÿsclkçš„æ ‡å¿—ä¿¡å·
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         sclk_flag <= 1'b0;
-    //Ê±ÖÓÏàÎ»Îª1Ê±£¬ÌáÇ°À­¸ß£¬ÈÃÉè±¸ÔÚÅ¼ÊıÑØ²É¼¯Êı¾İ
+    //æ—¶é’Ÿç›¸ä½ä¸º1æ—¶ï¼Œæå‰æ‹‰é«˜ï¼Œè®©è®¾å¤‡åœ¨å¶æ•°æ²¿é‡‡é›†æ•°æ®
     else if(CPHA == 1'b1 && state == STATE1 && (cnt_delay == DELAY_TIME - 1'b1))
         sclk_flag <= 1'b1;
     else if(cnt_sclk == CNT_SCLK_MAX - 1'b1)
@@ -100,7 +100,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else
         sclk_flag <= 1'b0;
         
-//×´Ì¬STATE2Ìø×ªµ½×´Ì¬DONEµÄ±êÖ¾ĞÅºÅ
+//çŠ¶æ€STATE2è·³è½¬åˆ°çŠ¶æ€DONEçš„æ ‡å¿—ä¿¡å·
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         state2_finish_flag <= 1'b0;
@@ -110,22 +110,22 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
         state2_finish_flag <= 1'b0;
         
 //-----------------------------------------------------------------           
-//sclkÊ±ÖÓĞÅºÅ
+//sclkæ—¶é’Ÿä¿¡å·
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         sclk <= 1'b0;
-    //Ê±ÖÓ¼«ĞÔÎª1£¬¿ÕÏĞÊ±sclkµÄ×´Ì¬Îª¸ßµçÆ½
+    //æ—¶é’Ÿææ€§ä¸º1ï¼Œç©ºé—²æ—¶sclkçš„çŠ¶æ€ä¸ºé«˜ç”µå¹³
     else if(CPOL == 1'b1 && state == STATE0)
         sclk <= 1'b1;
-    //Ê±ÖÓ¼«ĞÔÎª0£¬¿ÕÏĞÊ±sclkµÄ×´Ì¬Îªµ×µçÆ½
+    //æ—¶é’Ÿææ€§ä¸º0ï¼Œç©ºé—²æ—¶sclkçš„çŠ¶æ€ä¸ºåº•ç”µå¹³
     else if(CPOL == 1'b0 && state == STATE0)
         sclk <= 1'b0;
-    else if(sclk_flag)  //Ö»Òªslck_flagÀ­¸ß¾ÍÈÃsclkµçÆ½·´×ª
+    else if(sclk_flag)  //åªè¦slck_flagæ‹‰é«˜å°±è®©sclkç”µå¹³åè½¬
         sclk <= ~sclk;
     else
         sclk <= sclk;
 
-//mosi£ºSPI×ÜÏßĞ´Êı¾İĞÅºÅ
+//mosiï¼šSPIæ€»çº¿å†™æ•°æ®ä¿¡å·
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         mosi <= 1'b0;
@@ -148,7 +148,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else 
         mosi <= mosi;
 
-//wr_done´«ÊäÍê³É±êÖ¾ĞÅºÅ
+//wr_doneä¼ è¾“å®Œæˆæ ‡å¿—ä¿¡å·
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         wr_done <= 1'b0;
@@ -157,11 +157,11 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else
         wr_done <= 1'b0;
 
-//csÆ¬Ñ¡ĞÅºÅ£¬µÍµçÆ½ÓĞĞ§
+//csç‰‡é€‰ä¿¡å·ï¼Œä½ç”µå¹³æœ‰æ•ˆ
 assign cs = (state == STATE2) ? 1'b0 : 1'b1;
 
-//dcÒº¾§ÆÁ¼Ä´æÆ÷/Êı¾İÑ¡ÔñĞÅºÅ£¬µÍµçÆ½£º¼Ä´æÆ÷£¬¸ßµçÆ½£ºÊı¾İ
-//½ÓÊÕµÄdataµÄ×î¸ßÎ»¾ö¶¨dcµÄ×´Ì¬
+//dcæ¶²æ™¶å±å¯„å­˜å™¨/æ•°æ®é€‰æ‹©ä¿¡å·ï¼Œä½ç”µå¹³ï¼šå¯„å­˜å™¨ï¼Œé«˜ç”µå¹³ï¼šæ•°æ®
+//æ¥æ”¶çš„dataçš„æœ€é«˜ä½å†³å®šdcçš„çŠ¶æ€
 assign dc = data[8]; 
 
 endmodule

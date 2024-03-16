@@ -1,13 +1,14 @@
 module lcd_show_row (input wire sys_clk,
                      input wire sys_rst_n,
                      input wire wr_done,
-                     input wire show_pic_flag,        //显示字符标志信号
+                     input wire show_pic_flag,        //鏄剧ず瀛楃鏍囧織淇″彿
                      input wire [8:0] col_pos,
                      input wire [7:0] rom_q,
                      output wire [8:0] rom_addr,
-                     output wire [8:0] show_pic_data, //传输的命令或者数??
+                     output wire [8:0] show_pic_data, //浼犺緭鐨勫懡浠ゆ垨鑰呮暟??
                      output wire show_pic_done,
                      output wire en_write_show_pic);
+    
     
     //****************** Parameter and Internal Signal *******************//
     
@@ -23,33 +24,33 @@ module lcd_show_row (input wire sys_clk,
     //???????????
     reg  [3:0] state;
     
-    /*wr_done 打一??*/
+    /*wr_done 鎵撲竴??*/
     reg          the1_wr_done;
-    //设置显示窗口
+    //璁剧疆鏄剧ず绐楀彛
     reg  [3:0] cnt_set_windows;
     
-    //??????STATE1跳转到STATE2的标志信??
+    //??????STATE1璺宠浆鍒癝TATE2鐨勬爣蹇椾俊??
     reg          state1_finish_flag;
     
-    //等待rom数据读取完成的计数器
+    //绛夊緟rom鏁版嵁璇诲彇瀹屾垚鐨勮鏁板櫒
     reg  [2:0] cnt_rom_prepare;
     
-    //rom输出数据移位后得到的数据temp
+    //rom杈撳嚭鏁版嵁绉讳綅鍚庡緱鍒扮殑鏁版嵁temp
     reg  [15:0] temp;
     
-    //长度??1标志信号
+    //闀垮害??1鏍囧織淇″彿
     reg          length_num_flag;
     
-    //长度计数??
+    //闀垮害璁℃暟??
     reg  [8:0] cnt_length_num;
     
-    //点的颜色计数??
+    //鐐圭殑棰滆壊璁℃暟??
     reg  [9:0] cnt_wr_color_data;
     
-    //要传输的命令???????????
+    //瑕佷紶杈撶殑鍛戒护???????????
     reg  [8:0] data;
     
-    //??????STATE2跳转到DONE的标志信??
+    //??????STATE2璺宠浆鍒癉ONE鐨勬爣蹇椾俊??
     wire         state2_finish_flag;
     
     reg [8:0] col_pos_temp;
@@ -66,45 +67,45 @@ module lcd_show_row (input wire sys_clk,
             STATE2: state <= (state2_finish_flag) ? DONE : STATE2;
             DONE:   state <= STATE0;
         endcase
-        /* 当spi??个字节输出完成，会有??个wr_done脉冲*/
+        /* 褰搒pi??涓瓧鑺傝緭鍑哄畬鎴愶紝浼氭湁??涓獁r_done鑴夊啿*/
         always @(posedge sys_clk or negedge sys_rst_n)
             if (!sys_rst_n) the1_wr_done   <= 1'b0;
             else if (wr_done) the1_wr_done <= 1'b1;
             else the1_wr_done              <= 1'b0;
     
-    //设置显示窗口计数??
+    //璁剧疆鏄剧ず绐楀彛璁℃暟??
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) cnt_set_windows <= 'd0;
-        else if (state == STATE1 && the1_wr_done) cnt_set_windows <= cnt_set_windows + 1'b1;
+        else if (state == STATE1 && the1_wr_done) cnt_set_windows < = cnt_set_windows + 1'b1;
         else cnt_set_windows <= cnt_set_windows;
     
-    //??????STATE1跳转到STATE2的标志信??
+    //??????STATE1璺宠浆鍒癝TATE2鐨勬爣蹇椾俊??
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) state1_finish_flag <= 1'b0;
-        else if (cnt_set_windows == 'd10 && the1_wr_done) state1_finish_flag <= 1'b1;
+        else if (cnt_set_windows == 'd10 && the1_wr_done) state1_finish_flag < = 1'b1;
         else state1_finish_flag <= 1'b0;
-        /*前面完成了窗口大小位置的设置,后面完成两个颜色数据的传??*/
+        /*鍓嶉潰瀹屾垚浜嗙獥鍙ｅぇ灏忎綅缃殑璁剧疆,鍚庨潰瀹屾垚涓や釜棰滆壊鏁版嵁鐨勪紶??*/
     
     reg en_state2_flag;
     always@(posedge sys_clk or negedge sys_rst_n)
-    if(!sys_rst_n)  en_state2_flag<=1'b0;
-    else if(state == STATE2) en_state2_flag<=1'b1;
-    else if(state == DONE) en_state2_flag<=1'b0;
-    else en_state2_flag <= en_state2_flag;
+        if (!sys_rst_n)  en_state2_flag <= 1'b0;
+        else if (state == STATE2) en_state2_flag< = 1'b1;
+        else if (state == DONE) en_state2_flag< = 1'b0;
+        else en_state2_flag <= en_state2_flag;
     
     reg [8:0] rom_data_index;
-    assign rom_addr=rom_data_index;
+    assign rom_addr = rom_data_index;
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) rom_data_index <= 0;
-        else if (state == STATE0)  rom_data_index <= 0;
-        else if (state == STATE2 && the1_wr_done && rom_data_index < SIZE_WIDTH_MAX)  rom_data_index <= rom_data_index+1'b1;
+        else if (state == STATE0)  rom_data_index < = 0;
+        else if (state == STATE2 && the1_wr_done && rom_data_index < SIZE_WIDTH_MAX)  rom_data_index < = rom_data_index+1'b1;
         else  rom_data_index <= rom_data_index;
     
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n)  temp <= 16'd0;
-        else temp<= {temp[7:0],rom_q};
+        else temp             <= {temp[7:0],rom_q};
     
-    //长度??1标志信号
+    //闀垮害??1鏍囧織淇″彿
     always@(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n)
             length_num_flag <= 1'b0;
@@ -132,19 +133,19 @@ module lcd_show_row (input wire sys_clk,
             7: data       <= {1'b1, col_pos[7:0]};
             8: data       <= {1'b1, 7'h00,col_pos_temp[8]};
             9: data       <= {1'b1, col_pos_temp[7:0]};  //319
-            // 6: data       <= {1'b1, 8'h00};
-            // 7: data       <= {1'b1, 8'h05};
-            // 8: data       <= {1'b1, 8'h00};
-            // 9: data       <= {1'b1, 8'h06};  //319
+            // 6: data    <= {1'b1, 8'h00};
+            // 7: data    <= {1'b1, 8'h05};
+            // 8: data    <= {1'b1, 8'h00};
+            // 9: data    <= {1'b1, 8'h06};  //319
             10: data      <= 9'h02C;
             default: data <= 9'h000;
         endcase
         else if (state == STATE2)
-            data <= {1'b1,temp[15:8]};
+        data <= {1'b1,temp[15:8]};
     
-        else data <= data;
+    else data <= data;
     
-    //??????STATE2跳转到DONE的标志信??
+    //??????STATE2璺宠浆鍒癉ONE鐨勬爣蹇椾俊??
     assign state2_finish_flag = (
     (
     (rom_data_index == SIZE_WIDTH_MAX)
@@ -152,9 +153,9 @@ module lcd_show_row (input wire sys_clk,
     length_num_flag
     ) ? 1'b1 : 1'b0;
     
-    //输出端口
+    //杈撳嚭绔彛
     assign show_pic_data     = data;
-    assign en_write_show_pic = (state == STATE1 || en_state2_flag ) ? 1'b1 : 1'b0;
+    assign en_write_show_pic = (state == STATE1 || en_state2_flag) ? 1'b1 : 1'b0;
     assign show_pic_done     = (state == DONE) ? 1'b1 : 1'b0;
     
     

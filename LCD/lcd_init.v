@@ -1,18 +1,18 @@
 
 
 module lcd_init
-//#(//·ÂÕæÊ±µ÷ÓÃ
+//#(//ä»¿çœŸæ—¶è°ƒç”¨
 //    parameter   TIME100MS    = 23'd100,  //23'd5000_000  
 //                TIME150MS    = 23'd150,  //23'd7500_000  
 //                TIME120MS    = 23'd120,  //23'd6000_000  
-//                TIMES4MAX    = 18'd51 ,  //320*240*2+13£¨ÉèÖÃ´°¿Ú´óĞ¡£©=153_613 
+//                TIMES4MAX    = 18'd51 ,  //320*240*2+13ï¼ˆè®¾ç½®çª—å£å¤§å°ï¼‰=153_613 
 //                DATA_IDLE    = 9'b0_0000_0000
 //)
- #(//Çı¶¯lcdÊ±µ÷ÓÃ
+ #(//é©±åŠ¨lcdæ—¶è°ƒç”¨
      parameter   TIME100MS    = 23'd5000_000,  //23'd5000_000  
                  TIME150MS    = 23'd7500_000,  //23'd7500_000  
                  TIME120MS    = 23'd6000_000,  //23'd6000_000  
-                 TIMES4MAX    = 18'd153_613 ,  //320*240*2+13£¨ÉèÖÃ´°¿Ú´óĞ¡£©=153_613   
+                 TIMES4MAX    = 18'd153_613 ,  //320*240*2+13ï¼ˆè®¾ç½®çª—å£å¤§å°ï¼‰=153_613   
                  DATA_IDLE    = 9'b0_0000_0000
  )
 (
@@ -27,7 +27,7 @@ module lcd_init
     output  wire            init_done
 );
 //****************** Parameter and Internal Signal *******************//
-//»­±ÊÑÕÉ«
+//ç”»ç¬”é¢œè‰²
 parameter   WHITE   = 16'hFFFF,
             BLACK   = 16'h0000,	  
             BLUE    = 16'h001F,  
@@ -39,9 +39,9 @@ parameter   WHITE   = 16'hFFFF,
             GREEN   = 16'h07E0,
             CYAN    = 16'h7FFF,
             YELLOW  = 16'hFFE0,
-            BROWN 	= 16'hBC40, //×ØÉ«
-            BRRED 	= 16'hFC07, //×ØºìÉ«
-            GRAY  	= 16'h8430; //»ÒÉ«
+            BROWN 	= 16'hBC40, //æ£•è‰²
+            BRRED 	= 16'hFC07, //æ£•çº¢è‰²
+            GRAY  	= 16'h8430; //ç°è‰²
 
 //----------------------------------------------------------------- 
 reg [5:0]   state;
@@ -60,7 +60,7 @@ reg [17:0]  cnt_s4_num;
 reg         cnt_s4_num_done;   
 
 //----------------------------------------------------------------- 
-//×´Ì¬Ìø×ª            
+//çŠ¶æ€è·³è½¬            
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         state <= S0_DELAY100MS;
@@ -109,7 +109,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else
         lcd_rst <= lcd_rst;
 //----------------------------------------------------------------- 
-//cnt_s2_num¾ö¶¨Òª´«µÄÃüÁî/Êı¾İ
+//cnt_s2_numå†³å®šè¦ä¼ çš„å‘½ä»¤/æ•°æ®
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_s2_num <= 7'd0;
@@ -120,7 +120,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else
         cnt_s2_num <= cnt_s2_num;
 
-//cnt_s2_num_done == 1'b1ÔòS2_WR_90Íê³É
+//cnt_s2_num_done == 1'b1åˆ™S2_WR_90å®Œæˆ
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_s2_num_done <= 1'b0;
@@ -134,8 +134,8 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         init_data <= DATA_IDLE;
     else if(state == S2_WR_90)
-        //³õÊ¼»¯ÃüÁî/Êı¾İ£¬Ö±½Ó½èÓÃ³§¼ÒµÄ
-        case(cnt_s2_num)    //init_data[8] == 1'b1Ğ´Êı¾İ£» == 1'b0Ğ´ÃüÁî
+        //åˆå§‹åŒ–å‘½ä»¤/æ•°æ®ï¼Œç›´æ¥å€Ÿç”¨å‚å®¶çš„
+        case(cnt_s2_num)    //init_data[8] == 1'b1å†™æ•°æ®ï¼› == 1'b0å†™å‘½ä»¤
 		  /*
 				7'd0 :  init_data <= 9'h03a ; 
             7'd1 :  init_data <= 9'h105 ;                        
@@ -275,11 +275,11 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else if(state == S4_WR_DIRECTION_CLEAR)
         case(cnt_s4_num)
             'd0 :  init_data <= 9'h029;
-            //ÉèÖÃLCDÏÔÊ¾·½Ïò
+            //è®¾ç½®LCDæ˜¾ç¤ºæ–¹å‘
             'd1 :  init_data <= 9'h036;
             'd2 :  init_data <= 9'h100;
             
-            //LCDÏÔÊ¾´°¿ÚÉèÖÃ
+            //LCDæ˜¾ç¤ºçª—å£è®¾ç½®
             'd3 :  init_data <= 9'h02a;
                              
             'd4 :  init_data <= 9'h100;
@@ -296,12 +296,12 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
                              
             'd13:  init_data <= 9'h02c;
             
-            //Ìî³ä¶ÔÓ¦µãµÄÑÕÉ«
+            //å¡«å……å¯¹åº”ç‚¹çš„é¢œè‰²
             default : 
-                //µ±cnt_s4_num´óÓÚ14ÇÒÎªÅ¼ÊıÊ±£¬´«ÊäÑÕÉ«Êı¾İµÄ¸ß8Î»
+                //å½“cnt_s4_numå¤§äº14ä¸”ä¸ºå¶æ•°æ—¶ï¼Œä¼ è¾“é¢œè‰²æ•°æ®çš„é«˜8ä½
                 if(cnt_s4_num >= 'd14 && cnt_s4_num[0] == 0)
                     init_data <= {1'b1,WHITE[15:8]};
-                //µ±cnt_s4_num´óÓÚ14ÇÒÎªÆæÊıÊ±£¬´«ÊäÑÕÉ«Êı¾İµÄµÍ8Î»
+                //å½“cnt_s4_numå¤§äº14ä¸”ä¸ºå¥‡æ•°æ—¶ï¼Œä¼ è¾“é¢œè‰²æ•°æ®çš„ä½8ä½
                 else if(cnt_s4_num >= 'd14 && cnt_s4_num[0] == 1)
                     init_data <= {1'b1,WHITE[7:0]};
                 else
@@ -310,7 +310,7 @@ always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     else
         init_data <= DATA_IDLE;
 
-//cnt_s4_num¾ö¶¨Òª´«µÄÃüÁî/Êı¾İ
+//cnt_s4_numå†³å®šè¦ä¼ çš„å‘½ä»¤/æ•°æ®
 always@(posedge sys_clk_50MHz or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_s4_num <= 18'd0;

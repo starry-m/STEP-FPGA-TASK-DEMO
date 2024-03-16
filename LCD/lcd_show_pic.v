@@ -4,17 +4,17 @@ module lcd_show_pic
     input       wire            sys_clk             ,
     input       wire            sys_rst_n           ,
     input       wire            wr_done             ,
-    input       wire            show_pic_flag       ,   //ÏÔÊ¾×Ö·û±êÖ¾ĞÅºÅ
+    input       wire            show_pic_flag       ,   //æ˜¾ç¤ºå­—ç¬¦æ ‡å¿—ä¿¡å·
 
 	 output       reg     [8:0]  rom_addr,
 	 input			 wire    [239:0]   rom_q,
 
-    output      wire    [8:0]   show_pic_data       ,   //´«ÊäµÄÃüÁî»òÕßÊı¾İ
+    output      wire    [8:0]   show_pic_data       ,   //ä¼ è¾“çš„å‘½ä»¤æˆ–è€…æ•°æ®
 	 output		wire				 show_pic_done,
     output      wire            en_write_show_pic   
 );
 
-//»­±ÊÑÕÉ«
+//ç”»ç¬”é¢œè‰²
 parameter   WHITE   = 16'hFFFF,
             BLACK   = 16'h0000,	  
             BLUE    = 16'h001F,  
@@ -26,9 +26,9 @@ parameter   WHITE   = 16'hFFFF,
             GREEN   = 16'h07E0,
             CYAN    = 16'h7FFF,
             YELLOW  = 16'hFFE0,
-            BROWN   = 16'hBC40, //×ØÉ«
-            BRRED   = 16'hFC07, //×ØºìÉ«
-            GRAY    = 16'h8430; //»ÒÉ«
+            BROWN   = 16'hBC40, //æ£•è‰²
+            BRRED   = 16'hFC07, //æ£•çº¢è‰²
+            GRAY    = 16'h8430; //ç°è‰²
 
 //****************** Parameter and Internal Signal *******************//
 
@@ -41,45 +41,45 @@ parameter   STATE1 = 4'b0_010;
 parameter   STATE2 = 4'b0_100;
 parameter   DONE   = 4'b1_000;
 
-//×´Ì¬×ªÒÆ
+//çŠ¶æ€è½¬ç§»
 reg     [3:0]   state;
 
-//ÉèÖÃÏÔÊ¾´°¿Ú
+//è®¾ç½®æ˜¾ç¤ºçª—å£
 reg             the1_wr_done;
 reg     [3:0]   cnt_set_windows;
 
-//×´Ì¬STATE1Ìø×ªµ½STATE2µÄ±êÖ¾ĞÅºÅ
+//çŠ¶æ€STATE1è·³è½¬åˆ°STATE2çš„æ ‡å¿—ä¿¡å·
 reg            state1_finish_flag;
 
-//µÈ´ıromÊı¾İ¶ÁÈ¡Íê³ÉµÄ¼ÆÊıÆ÷
+//ç­‰å¾…romæ•°æ®è¯»å–å®Œæˆçš„è®¡æ•°å™¨
 reg     [2:0]   cnt_rom_prepare;
 
-//romµÄµØÖ·
+//romçš„åœ°å€
 //reg     [8:0]  rom_addr;
 //wire    [239:0]   rom_q;
 
-//romÊä³öÊı¾İÒÆÎ»ºóµÃµ½µÄÊı¾İtemp
+//romè¾“å‡ºæ•°æ®ç§»ä½åå¾—åˆ°çš„æ•°æ®temp
 reg     [239:0]   temp;
 
-//³¤¶È¼Ó1±êÖ¾ĞÅºÅ
+//é•¿åº¦åŠ 1æ ‡å¿—ä¿¡å·
 reg             length_num_flag;
 
-//³¤¶È¼ÆÊıÆ÷
+//é•¿åº¦è®¡æ•°å™¨
 reg     [8:0]   cnt_length_num;
 
-//µãµÄÑÕÉ«¼ÆÊıÆ÷
+//ç‚¹çš„é¢œè‰²è®¡æ•°å™¨
 reg     [9:0]   cnt_wr_color_data;
 
-//Òª´«ÊäµÄÃüÁî»òÕßÊı¾İ
+//è¦ä¼ è¾“çš„å‘½ä»¤æˆ–è€…æ•°æ®
 reg     [8:0]   data;
 
-//×´Ì¬STATE2Ìø×ªµ½DONEµÄ±êÖ¾ĞÅºÅ        
+//çŠ¶æ€STATE2è·³è½¬åˆ°DONEçš„æ ‡å¿—ä¿¡å·        
 wire    state2_finish_flag;
 
 //******************************* Main Code **************************//
 
 
-//×´Ì¬×ªÒÆ
+//çŠ¶æ€è½¬ç§»
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         state <= STATE0;
@@ -90,7 +90,7 @@ always@(posedge sys_clk or negedge sys_rst_n)
             STATE2 : state <= (state2_finish_flag) ? DONE : STATE2;
             DONE   : state <= STATE0;
         endcase
-//ÖØÒª//
+//é‡è¦//
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n) 
         the1_wr_done <= 1'b0;
@@ -99,14 +99,14 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else
         the1_wr_done <= 1'b0;
         
-//ÉèÖÃÏÔÊ¾´°¿Ú¼ÆÊıÆ÷
+//è®¾ç½®æ˜¾ç¤ºçª—å£è®¡æ•°å™¨
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)  
         cnt_set_windows <= 'd0;
     else if(state == STATE1 && the1_wr_done)
         cnt_set_windows <= cnt_set_windows + 1'b1;
 
-//×´Ì¬STATE1Ìø×ªµ½STATE2µÄ±êÖ¾ĞÅºÅ
+//çŠ¶æ€STATE1è·³è½¬åˆ°STATE2çš„æ ‡å¿—ä¿¡å·
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         state1_finish_flag <= 1'b0;
@@ -115,7 +115,7 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else
         state1_finish_flag <= 1'b0;
 
-//µÈ´ıromÊı¾İ¶ÁÈ¡Íê³ÉµÄ¼ÆÊıÆ÷
+//ç­‰å¾…romæ•°æ®è¯»å–å®Œæˆçš„è®¡æ•°å™¨
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)  
         cnt_rom_prepare <= 'd0;
@@ -124,14 +124,14 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else if(state == STATE2 && cnt_rom_prepare < 'd5)
         cnt_rom_prepare <= cnt_rom_prepare + 1'b1;
         
-//romµÄµØÖ·
+//romçš„åœ°å€
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         rom_addr <= 'd0;
     else if(cnt_rom_prepare == 'd1)      
         rom_addr <=  cnt_length_num;
 
-//romÊä³öÊı¾İÒÆÎ»ºóµÃµ½µÄÊı¾İtemp
+//romè¾“å‡ºæ•°æ®ç§»ä½åå¾—åˆ°çš„æ•°æ®temp
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         temp <= 'd0;
@@ -146,7 +146,7 @@ always@(posedge sys_clk or negedge sys_rst_n)
 			end
 
 
-//³¤¶È¼Ó1±êÖ¾ĞÅºÅ
+//é•¿åº¦åŠ 1æ ‡å¿—ä¿¡å·
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         length_num_flag <= 1'b0;
@@ -159,14 +159,14 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else
        length_num_flag <= 1'b0;
         
-//³¤¶È¼ÆÊıÆ÷
+//é•¿åº¦è®¡æ•°å™¨
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_length_num <= 'd0;
     else if(cnt_length_num < SIZE_LENGTH_MAX && length_num_flag)
         cnt_length_num <= cnt_length_num + 1'b1;
 
-//µãµÄÑÕÉ«¼ÆÊıÆ÷
+//ç‚¹çš„é¢œè‰²è®¡æ•°å™¨
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         cnt_wr_color_data <= 'd0;
@@ -175,7 +175,7 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else if(state == STATE2 && the1_wr_done)
         cnt_wr_color_data <= cnt_wr_color_data + 1'b1;
         
-//Òª´«ÊäµÄÃüÁî»òÕßÊı¾İ
+//è¦ä¼ è¾“çš„å‘½ä»¤æˆ–è€…æ•°æ®
 always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)
         data <= 9'h000;
@@ -207,7 +207,7 @@ always@(posedge sys_clk or negedge sys_rst_n)
     else
         data <= data;   
 
-//×´Ì¬STATE2Ìø×ªµ½DONEµÄ±êÖ¾ĞÅºÅ        
+//çŠ¶æ€STATE2è·³è½¬åˆ°DONEçš„æ ‡å¿—ä¿¡å·        
 assign state2_finish_flag = (
                              (
                                 (cnt_length_num == SIZE_LENGTH_MAX)         
@@ -215,7 +215,7 @@ assign state2_finish_flag = (
                              length_num_flag
                             ) ? 1'b1 : 1'b0;
         
-//Êä³ö¶Ë¿Ú
+//è¾“å‡ºç«¯å£
 assign show_pic_data = data;
 assign en_write_show_pic = (state == STATE1 || cnt_rom_prepare == 'd5) ? 1'b1 : 1'b0;
 assign show_pic_done = (state == DONE) ? 1'b1 : 1'b0;

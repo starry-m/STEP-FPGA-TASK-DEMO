@@ -21,9 +21,11 @@ module  picture_display
     input           	clk			,
     input               clk_50MHz,
     input           	rst_n		   ,
-    
-    input               uart_rx,
-    output              uart_tx,
+    input               rx_data_valid,
+    input               [7:0]	rx_data_out,
+    output              tx_data_valid,
+    output               [7:0]	tx_data_in,
+
     output          	lcd_rst     ,
 	output				lcd_blk		,
     output          	lcd_dc      ,
@@ -57,25 +59,22 @@ wire [8:0]col_pos;
 assign			lcd_blk = 1'b1;
 
 
-wire rx_data_valid;
-wire [7:0]	rx_data_out;
-wire tx_data_valid;
-wire [7:0]	tx_data_in;
+
 
 // wire show_row_done;
 wire W_EN;
 wire row_finished_flag;
-uart_bus u1(	
-		.clk(clk),							//系统时钟 12MHz
-		.rst_n(rst_n),						//系统复位，低有效
-		.uart_rx(uart_rx),				//UART接收输入
-		.rx_data_valid(rx_data_valid),//接收数据有效脉冲
-		.rx_data_out(rx_data_out),		//接收到的数据
+// uart_bus u1(	
+// 		.clk(clk),							//系统时钟 12MHz
+// 		.rst_n(rst_n),						//系统复位，低有效
+// 		.uart_rx(uart_rx),				//UART接收输入
+// 		.rx_data_valid(rx_data_valid),//接收数据有效脉冲
+// 		.rx_data_out(rx_data_out),		//接收到的数据
 
-        .tx_data_valid(tx_data_valid),	//发送数据有效脉�
-		.tx_data_in(tx_data_in),		//要发送的数据
-		.uart_tx(uart_tx)			//UART发送输�
-	);
+//         .tx_data_valid(tx_data_valid),	//发送数据有效脉�
+// 		.tx_data_in(tx_data_in),		//要发送的数据
+// 		.uart_tx(uart_tx)			//UART发送输�
+// 	);
 
 // pll pll_u1(
  
