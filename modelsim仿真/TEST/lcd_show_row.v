@@ -1,11 +1,11 @@
 module lcd_show_row (input wire sys_clk,
                      input wire sys_rst_n,
                      input wire wr_done,
-                     input wire show_pic_flag,        //ÏÔÊ¾×Ö·û±êÖ¾ÐÅºÅ
+                     input wire show_pic_flag,        //ï¿½ï¿½Ê¾ï¿½Ö·ï¿½ï¿½ï¿½Ö¾ï¿½Åºï¿½
                      input wire [8:0] col_pos,
                      input wire [7:0] rom_q,
                      output  [8:0] rom_addr,
-                     output wire [8:0] show_pic_data, //´«ÊäµÄÃüÁî»òÕßÊý??
+                     output wire [8:0] show_pic_data, //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??
                      output wire show_pic_done,
                      output wire [3:0] register_r,
                      output reg  [3:0] cnt_set_windows,
@@ -25,33 +25,33 @@ module lcd_show_row (input wire sys_clk,
     //???????????
     reg  [3:0] state;
     assign register_r=state;
-    /*wr_done ´òÒ»??*/
+    /*wr_done ï¿½ï¿½Ò»??*/
     reg          the1_wr_done;
-    //ÉèÖÃÏÔÊ¾´°¿Ú
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
     // reg  [3:0] cnt_set_windows;
     
-    //??????STATE1Ìø×ªµ½STATE2µÄ±êÖ¾ÐÅ??
+    //??????STATE1ï¿½ï¿½×ªï¿½ï¿½STATE2ï¿½Ä±ï¿½Ö¾ï¿½ï¿½??
     reg          state1_finish_flag;
     
-    //µÈ´ýromÊý¾Ý¶ÁÈ¡Íê³ÉµÄ¼ÆÊýÆ÷
+    //ï¿½È´ï¿½romï¿½ï¿½ï¿½Ý¶ï¿½È¡ï¿½ï¿½ÉµÄ¼ï¿½ï¿½ï¿½ï¿½ï¿½
     reg  [2:0] cnt_rom_prepare;
     
-    //romÊä³öÊý¾ÝÒÆÎ»ºóµÃµ½µÄÊý¾Ýtemp
+    //romï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½temp
     reg  [15:0] temp;
     
-    //³¤¶È??1±êÖ¾ÐÅºÅ
+    //ï¿½ï¿½ï¿½ï¿½??1ï¿½ï¿½Ö¾ï¿½Åºï¿½
     reg          length_num_flag;
     
-    //³¤¶È¼ÆÊý??
+    //ï¿½ï¿½ï¿½È¼ï¿½ï¿½ï¿½??
     reg  [8:0] cnt_length_num;
     
-    //µãµÄÑÕÉ«¼ÆÊý??
+    //ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ï¿½??
     reg  [9:0] cnt_wr_color_data;
     
-    //Òª´«ÊäµÄÃüÁî???????????
+    //Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???????????
     reg  [8:0] data;
     
-    //??????STATE2Ìø×ªµ½DONEµÄ±êÖ¾ÐÅ??
+    //??????STATE2ï¿½ï¿½×ªï¿½ï¿½DONEï¿½Ä±ï¿½Ö¾ï¿½ï¿½??
     wire         state2_finish_flag;
     
     reg [8:0] col_pos_temp;
@@ -68,24 +68,24 @@ module lcd_show_row (input wire sys_clk,
             STATE2: state <= (state2_finish_flag) ? DONE : STATE2;
             DONE:   state <= STATE0;
         endcase
-        /* µ±spi??¸ö×Ö½ÚÊä³öÍê³É£¬»áÓÐ??¸öwr_doneÂö³å*/
+        /* ï¿½ï¿½spi??ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½ï¿½ï¿½ï¿½ï¿½??ï¿½ï¿½wr_doneï¿½ï¿½ï¿½ï¿½*/
         always @(posedge sys_clk or negedge sys_rst_n)
             if (!sys_rst_n) the1_wr_done   <= 1'b0;
             else if (wr_done) the1_wr_done <= 1'b1;
             else the1_wr_done              <= 1'b0;
     
-    //ÉèÖÃÏÔÊ¾´°¿Ú¼ÆÊý??
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½??
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) cnt_set_windows <= 'd0;
         else if (state == STATE1 && the1_wr_done) cnt_set_windows <= cnt_set_windows + 1'b1;
         else cnt_set_windows <= cnt_set_windows;
     
-    //??????STATE1Ìø×ªµ½STATE2µÄ±êÖ¾ÐÅ??
+    //??????STATE1ï¿½ï¿½×ªï¿½ï¿½STATE2ï¿½Ä±ï¿½Ö¾ï¿½ï¿½??
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) state1_finish_flag <= 1'b0;
         else if (cnt_set_windows == 'd10 && the1_wr_done) state1_finish_flag <= 1'b1;
         else state1_finish_flag <= 1'b0;
-        /*Ç°ÃæÍê³ÉÁË´°¿Ú´óÐ¡Î»ÖÃµÄÉèÖÃ,ºóÃæÍê³ÉÁ½¸öÑÕÉ«Êý¾ÝµÄ´«??*/
+        /*Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë´ï¿½ï¿½Ú´ï¿½Ð¡Î»ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«ï¿½ï¿½ï¿½ÝµÄ´ï¿½??*/
     
     always@(posedge sys_clk or negedge sys_rst_n)
     if(!sys_rst_n)  
@@ -114,7 +114,7 @@ module lcd_show_row (input wire sys_clk,
         if (!sys_rst_n)  temp <= 'd0;
         else temp             <= {temp[7:0],rom_q};
     
-    //³¤¶È??1±êÖ¾ÐÅºÅ
+    //ï¿½ï¿½ï¿½ï¿½??1ï¿½ï¿½Ö¾ï¿½Åºï¿½
     always@(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n)
             length_num_flag <= 1'b0;
@@ -127,7 +127,7 @@ module lcd_show_row (input wire sys_clk,
         else
             length_num_flag <= 1'b0;
     
-    //Òª´«ÊäµÄÃüÁî???????????
+    //Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???????????
     always @(posedge sys_clk or negedge sys_rst_n)
         if (!sys_rst_n) data <= 9'h000;
         else if (state == STATE1)
@@ -150,7 +150,7 @@ module lcd_show_row (input wire sys_clk,
     
     else data <= data;
     
-    //??????STATE2Ìø×ªµ½DONEµÄ±êÖ¾ÐÅ??
+    //??????STATE2ï¿½ï¿½×ªï¿½ï¿½DONEï¿½Ä±ï¿½Ö¾ï¿½ï¿½??
     assign state2_finish_flag = (
     (
     (rom_data_index == SIZE_WIDTH_MAX)
@@ -158,7 +158,7 @@ module lcd_show_row (input wire sys_clk,
     length_num_flag
     ) ? 1'b1 : 1'b0;
     
-    //Êä³ö¶Ë¿Ú
+    //ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½
     assign show_pic_data     = data;
     assign en_write_show_pic = (state == STATE1 || en_state2_flag) ? 1'b1 : 1'b0;
     assign show_pic_done     = (state == DONE) ? 1'b1 : 1'b0;

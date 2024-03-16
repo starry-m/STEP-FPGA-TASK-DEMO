@@ -57,7 +57,7 @@ initial tx_data_in_temp= 0;
     // initial switch_pulse=0;
 initial begin
 	#200;
-	rx_byte(); //µ÷ÓÃÈÎÎñrx_byte
+	rx_byte(); //è°ƒç”¨ä»»åŠ¡rx_byte
 
     #50;
 
@@ -74,7 +74,7 @@ task rx_byte();
 	integer j;
 	for(j=0;j<100;j=j+1)
     begin
-		rx_bit(j);  //µ÷ÓÃ8´Îrx_bitÈÎÎñ£¬·Ö±ğ·¢ËÍ0-7
+		rx_bit(j);  //è°ƒç”¨8æ¬¡rx_bitä»»åŠ¡ï¼Œåˆ†åˆ«å‘é€0-7
         #(20);
 	end
 endtask
@@ -85,7 +85,7 @@ task rx_bit(
 	integer i;
 	for(i=0;i<10;i=i+1)begin
 		case(i)
-			'd0: uart_rx=1'b0;	//·¢ËÍÆğÊ¼Î»
+			'd0: uart_rx=1'b0;	//å‘é€èµ·å§‹ä½
 			'd1: uart_rx=data[0];
 			'd2: uart_rx=data[1];
 			'd3: uart_rx=data[2];
@@ -94,7 +94,7 @@ task rx_bit(
 			'd6: uart_rx=data[5];
 			'd7: uart_rx=data[6];
 			'd8: uart_rx=data[7];
-			'd9: uart_rx=1'b1;	//·¢ËÍÍ£Ö¹Î»
+			'd9: uart_rx=1'b1;	//å‘é€åœæ­¢ä½
 			default uart_rx=1'b1;
 		endcase
 	    #(10*8);

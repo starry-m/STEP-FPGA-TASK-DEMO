@@ -5,7 +5,6 @@
  
  SYS_CLK =48M;
  SPI_SCLK=48/10=4.8m; BIT/S
- 
  */
 module uart_to_ram (input wire clk_12m,
                     input wire clk,
@@ -21,7 +20,7 @@ module uart_to_ram (input wire clk_12m,
                     output reg W_EN,
                     output reg row_finished_flag);
     
-    //采用16进制格式，接收到的数据等于数值本�??????
+    //采用16进制格式，接收到的数据等于数�?
     parameter  PIC_SIZE      = 18'd153599;
     parameter SIZE_WIDTH_MAX = 9'd479;
     wire [7:0] rx_data_temp  = rx_data_out;

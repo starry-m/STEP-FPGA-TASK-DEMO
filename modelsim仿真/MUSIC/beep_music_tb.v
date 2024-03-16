@@ -12,10 +12,6 @@ initial begin
     rst_n = 1'b0;
     #20;
     rst_n = 1'b1;
-
-
-
-	
 end
 
 wire beeper;
@@ -26,20 +22,20 @@ wire  [4:0]	data;
 reg no_flag;
 
 reg [23:0]cnt_1s;
-//½«°´¼üĞÅÏ¢Òë³ÉÒô½Ú¶ÔÓ¦µÄÖÜÆÚcycleÖµ
+//å°†æŒ‰é”®ä¿¡æ¯è¯‘æˆéŸ³èŠ‚å¯¹åº”çš„å‘¨æœŸcycleå€¼
 music_to_tone u2(
 		.choose(note_c),
 		.cycle(cycle)
 );
 
-//¸ù¾İ²»Í¬Òô½ÚµÄÖÜÆÚcycleÖµ²úÉú¶ÔÓ¦µÄPWMĞÅºÅ
+//æ ¹æ®ä¸åŒéŸ³èŠ‚çš„å‘¨æœŸcycleå€¼äº§ç”Ÿå¯¹åº”çš„PWMä¿¡å·
 pwm #(
 		.WIDTH(8)			//ensure that 2**WIDTH > cycle
 	) u3(
 		.clk(clk),
 		.rst_n(rst_n),
 		.cycle(cycle),		//cycle > duty
-		.duty(cycle>>1),	//duty=cycle/2,²úÉú50%Õ¼¿Õ±È
+		.duty(cycle>>1),	//duty=cycle/2,äº§ç”Ÿ50%å ç©ºæ¯”
 		.pwm_out(beeper)
 );
 

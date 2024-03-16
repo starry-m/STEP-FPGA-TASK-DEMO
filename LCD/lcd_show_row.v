@@ -1,11 +1,11 @@
 module lcd_show_row (input wire sys_clk,
                      input wire sys_rst_n,
                      input wire wr_done,
-                     input wire show_pic_flag,        //显示字符标志信号
+                     input wire show_pic_flag,        
                      input wire [8:0] col_pos,
                      input wire [7:0] rom_q,
                      output wire [8:0] rom_addr,
-                     output wire [8:0] show_pic_data, //传输的命令或者数??
+                     output wire [8:0] show_pic_data, 
                      output wire show_pic_done,
                      output wire en_write_show_pic);
     
