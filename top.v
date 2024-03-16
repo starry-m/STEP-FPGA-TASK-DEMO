@@ -10,11 +10,11 @@ output          	lcd_sclk    ,
 output          	lcd_mosi    ,
 output          	lcd_cs   ,
 
-input				uart_rx,		//UART接收输入
+input				uart_rx,		//UART鎺ユ敹杈撳叆
 output				uart_tx,
-output				seg_rck,		//74HC595的RCK管脚
-output				seg_sck,		//74HC595的SCK管脚
-output				seg_din,		//74HC595的SER管脚
+output				seg_rck,		//74HC595鐨凴CK绠¤剼
+output				seg_sck,		//74HC595鐨凷CK绠¤剼
+output				seg_din,		//74HC595鐨凷ER绠¤剼
 
 input		[3:0]	col,
 output	    [3:0]	row,
@@ -22,7 +22,7 @@ output			    beeper
 );
 wire  clk_50m;//actual 48m
 pll u_pll(.CLKI(clk_12m ), .CLKOP(  clk_50m));
-//顶层文件
+//椤跺眰鏂囦欢
 //#(.CNT_1S ( 19 ))
 LED_shining  u_LED_shining (
     .clk                     ( clk_12m     ),
@@ -57,11 +57,11 @@ picture_display u_picture_display(
 //     .clk(clk_12m),			
 // 	.rst_n(rst_n),		
 
-// 	.uart_rx(uart_rx),		//UART接收输入
+// 	.uart_rx(uart_rx),		//UART鎺ユ敹杈撳叆
 
-// 	.seg_rck(seg_rck),		//74HC595的RCK管脚
-// 	.seg_sck(seg_sck),		//74HC595的SCK管脚
-// 	.seg_din(seg_din)		//74HC595的SER管脚
+// 	.seg_rck(seg_rck),		//74HC595鐨凴CK绠¤剼
+// 	.seg_sck(seg_sck),		//74HC595鐨凷CK绠¤剼
+// 	.seg_din(seg_din)		//74HC595鐨凷ER绠¤剼
 // );
 
 
