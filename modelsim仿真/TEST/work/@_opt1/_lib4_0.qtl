@@ -1,0 +1,211 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 17 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/LED
+T_opt
+!s110 1710333287
+VAhITizZoAl1c`d[OX9;VC3
+04 6 4 work led_tb fast 0
+=1-687a64e05790-65f19d67-15e-4fdc
+Z1 o-quiet -auto_acc_if_foreign -work work +acc
+Z2 tCvgOpt 0
+n@_opt
+Z3 OL;O;2019.2;69
+R0
+T_opt1
+!s110 1710422702
+VZ8iNkoEPFF2VXn>hEbjVG3
+04 10 4 work lcd_bar_tb fast 0
+=1-687a64e05790-65f2faae-36-8f6c
+R1
+R2
+n@_opt1
+R3
+vlcd_bar_tb
+Z4 !s110 1710343673
+!i10b 1
+!s100 `Q;hnA6QNHVIXg_Z8TY6`0
+!s11b fBO6aKR_FXZ87MRQUTY8I1
+I1?6c>^=@Wz<I3l;cU9M<m0
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST
+w1710342189
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_bar_tb.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_bar_tb.v
+L0 2
+Z7 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z8 !s108 1710343673.000000
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_bar_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_bar_tb.v|
+!i113 0
+Z9 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
+vlcd_init
+R4
+!i10b 1
+!s100 Y188P2C6am0MJNi5JIVjl2
+!s11b eTIM?<DD=]jU8h@fEVJZR1
+Ij5df1_=H9SfG7:RXV_j@83
+R5
+R6
+w1710161935
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_init.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_init.v
+L0 3
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_init.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_init.v|
+!i113 0
+R9
+R2
+vlcd_ram
+R4
+!i10b 1
+!s100 j9I<g9lAA0DLBcbocYWJ[1
+!s11b N5l[;OB3``Y@R47D21Vb50
+IQh^O>a7RcoRVNVK<OdWd91
+R5
+R6
+w1710343563
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_ram.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_ram.v
+L0 2
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_ram.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_ram.v|
+!i113 0
+R9
+R2
+vlcd_show_ram
+R4
+!i10b 1
+!s100 @>IG;moFIdo`^5nS[XFUR3
+!s11b RL<[V2H5?PD47iX7:0[5K0
+IdbCX>W@g]f6kFYM>>N<F22
+R5
+R6
+w1710330687
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_ram.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_ram.v
+L0 8
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_ram.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_ram.v|
+!i113 0
+R9
+R2
+vlcd_show_row
+!s110 1710422693
+!i10b 1
+!s100 ?M81:^dFLTOD:Pdk5bXPd3
+!s11b ]4O:mjoX@aoKlkJOciT:A1
+IQI2jSZ?G<d_EOjiaOOgc?3
+R5
+R6
+w1710344991
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_show_row.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_show_row.v
+L0 1
+R7
+r1
+!s85 0
+31
+!s108 1710422693.000000
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_show_row.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_show_row.v|
+!i113 0
+R9
+R2
+vlcd_write
+R4
+!i10b 1
+!s100 7<L@AMkk_:7X28ED2jOzZ0
+!s11b `BLH]D[CWGMMh?7BS]I`m0
+Ik`2QG]D?^5S:;Kf@B8M0]1
+R5
+R6
+w1709643980
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_write.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_write.v
+L0 3
+R7
+r1
+!s85 0
+31
+R8
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_write.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_write.v|
+!i113 0
+R9
+R2
+vled
+Z10 !s110 1710333237
+!i10b 1
+!s100 HiF9<n=^??4n:@;F9WFJ93
+!s11b o88ooB1f4kcVjeWUCzRUz1
+IVUNDj0MSV8:DODJWcE`gG0
+R5
+R6
+w1710333208
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led.v
+L0 1
+R7
+r1
+!s85 0
+31
+Z11 !s108 1710333237.000000
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led.v|
+!i113 0
+R9
+R2
+vled_tb
+R10
+!i10b 1
+!s100 8Fe4IjAekezDeG=l2z55`2
+!s11b ]0>hLQ`2o^C0DUX3PI>_Y0
+I1]OlMDjPS]8P]H<VAIRje2
+R5
+R6
+w1710333230
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led_tb.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led_tb.v
+L0 2
+R7
+r1
+!s85 0
+31
+R11
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/led_tb.v|
+!i113 0
+R9
+R2
+
+D_SIM/TEST/led_tb.v|
+!i113 0
+R7
+R2

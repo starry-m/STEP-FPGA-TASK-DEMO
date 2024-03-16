@@ -1,0 +1,15 @@
+D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/LED/SRC/LED_shining.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/LED/SRC/LED_shining.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module LED_shining
+
+Top level modules:
+	LED_shining
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/LED/SRC/LED_tb.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/LED/SRC/LED_tb.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module LED_tb
+
+Top level modules:
+	LED_tb
+
+} {} {}}

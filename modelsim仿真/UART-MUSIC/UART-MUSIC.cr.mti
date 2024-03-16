@@ -1,0 +1,29 @@
+D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_rx.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_rx.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_bus.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_bus.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_bus
+
+Top level modules:
+	uart_bus
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_tx.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_tx.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/baud.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/baud.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module baud
+
+Top level modules:
+	baud
+
+} {} {}}

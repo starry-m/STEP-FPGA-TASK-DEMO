@@ -1,0 +1,29 @@
+D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_rom.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_rom.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module music_rom
+
+Top level modules:
+	music_rom
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/pwm.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/pwm.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module pwm
+
+Top level modules:
+	pwm
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_to_tone.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_to_tone.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module music_to_tone
+
+Top level modules:
+	music_to_tone
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/beep_music_tb.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/beep_music_tb.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module beep_music_tb
+
+Top level modules:
+	beep_music_tb
+
+} {} {}}

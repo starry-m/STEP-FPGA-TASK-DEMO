@@ -1,0 +1,108 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 17 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM
+T_opt
+!s110 1710506651
+V><DaGg_m^EhP]k`XFBRjA3
+04 13 4 work beep_music_tb fast 0
+=1-687a64e05790-65f4429a-3b7-7d18
+o-quiet -auto_acc_if_foreign -work work +acc
+Z0 tCvgOpt 0
+n@_opt
+OL;O;2019.2;69
+vbeep_music_tb
+Z1 !s110 1710506641
+!i10b 1
+!s100 WAYN=N9RU]UNRf?0ZgV7o2
+!s11b 2U7n31Yg]:LK246P6zadd2
+IA@R>d2c;0bzVA0b^ZcG5B0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC
+w1710506632
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/beep_music_tb.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/beep_music_tb.v
+L0 2
+Z4 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z5 !s108 1710506641.000000
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/beep_music_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/beep_music_tb.v|
+!i113 0
+Z6 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+vmusic_rom
+R1
+!i10b 1
+!s100 E:f=TVYd@>UEiH_Ro57P_0
+!s11b lV=[`CUR3kH<4:]<;jPW42
+IIMO=cQCIlNmcF16X`X[:03
+R2
+R3
+w1710506625
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_rom.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_rom.v
+L0 1
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_rom.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_rom.v|
+!i113 0
+R6
+R0
+vmusic_to_tone
+R1
+!i10b 1
+!s100 G>QIf9@]EaT_9I=baMna]2
+!s11b :D11KWQ4JU:MH1Z0ZN8Jb2
+IzCQlfDa?UMUe3Jh4_cbbg2
+R2
+R3
+w1710484372
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_to_tone.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_to_tone.v
+Z7 L0 18
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_to_tone.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/music_to_tone.v|
+!i113 0
+R6
+R0
+vpwm
+R1
+!i10b 1
+!s100 V^Yd;2=o?l<Z@fH6HkL?>2
+!s11b >T>ok<5?_]a<FT<8Nl1jT1
+IUSeLEVB1NAokc5j0ADAD[2
+R2
+R3
+w1702458722
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/pwm.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/pwm.v
+R7
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/pwm.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC/pwm.v|
+!i113 0
+R6
+R0

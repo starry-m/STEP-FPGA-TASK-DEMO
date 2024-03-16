@@ -1,0 +1,131 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 17 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/MUSIC
+T_opt
+!s110 1710510963
+VElP4I1ILf@29Lj[a9fXCc1
+04 13 4 work UART_music_tb fast 0
+=1-687a64e05790-65f45373-2d4-21f4
+o-quiet -auto_acc_if_foreign -work work +acc
+Z0 tCvgOpt 0
+n@_opt
+OL;O;2019.2;69
+vbaud
+Z1 !s110 1710510542
+!i10b 1
+!s100 8S]dF:OT3PScJ9eD:m8l;3
+!s11b YDHbSNNDK<VmZACYHIbhU1
+I:3D2^7a0o?eKI^liYZ;zR0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC
+w1704251174
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/baud.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/baud.v
+Z4 L0 18
+Z5 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z6 !s108 1710510542.000000
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/baud.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/baud.v|
+!i113 0
+Z7 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+vuart_bus
+R1
+!i10b 1
+!s100 ]0?44UnfXf9eBT>lH>Pe=1
+!s11b gbboTYB5F`Zn[aYkMPWR12
+IP5Sa7h9W?An0KOEKS0=i00
+R2
+R3
+w1710437361
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_bus.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_bus.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_bus.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_bus.v|
+!i113 0
+R7
+R0
+vUART_music_tb
+!s110 1710510959
+!i10b 1
+!s100 cmRbaElGJmWoaY9M]:mWI0
+!s11b nd3kQY_FPeHbA<3aXdZgl0
+I7Qe29:Bm8R6XVG=[k1^Vk0
+R2
+R3
+w1710510955
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/UART_music_tb.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/UART_music_tb.v
+L0 3
+R5
+r1
+!s85 0
+31
+!s108 1710510959.000000
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/UART_music_tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/UART_music_tb.v|
+!i113 0
+R7
+R0
+n@u@a@r@t_music_tb
+vuart_rx
+R1
+!i10b 1
+!s100 57`CkRjbBI86T8GLZoR2n3
+!s11b dffGVn_TNJKC5zWj[M`233
+Ia6Gf0e=7[=MZ09_eXm;iS1
+R2
+R3
+w1704251254
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_rx.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_rx.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_rx.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_rx.v|
+!i113 0
+R7
+R0
+vuart_tx
+R1
+!i10b 1
+!s100 =T56zhE1<N6>j@eGAI?Y?2
+!s11b <ghE_g>aYICObOA^]XdU92
+IV^fT7lXL?lS@Xd?bE757A1
+R2
+R3
+w1704251228
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_tx.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_tx.v
+R4
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_tx.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-MUSIC/uart_tx.v|
+!i113 0
+R7
+R0

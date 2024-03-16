@@ -1,0 +1,44 @@
+D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_tx.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_tx.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_tx
+
+Top level modules:
+	uart_tx
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/row_ram.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/row_ram.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module row_ram
+
+Top level modules:
+	row_ram
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/baud.v {1 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\baud.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module baud
+
+Top level modules:
+	baud
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_rx.v {1 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_rx.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_rx
+
+Top level modules:
+	uart_rx
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_bus.v {1 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_bus.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_bus
+
+Top level modules:
+	uart_bus
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_to_ram.v {2 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_to_ram.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module uart_to_ram
+** Warning: D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_to_ram.v(45): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+Top level modules:
+	uart_to_ram
+
+} {} {}}

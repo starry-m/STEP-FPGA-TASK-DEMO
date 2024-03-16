@@ -1,0 +1,152 @@
+m255
+K4
+z2
+!s11f vlog 2019.2 2019.04, Apr 17 2019
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST
+T_opt
+!s110 1710443580
+V3aXz8E:L6DfJ`=7OTB^4h2
+04 11 4 work uart_to_ram fast 0
+=1-687a64e05790-65f34c3c-22f-9618
+o-quiet -auto_acc_if_foreign -work work +acc
+Z0 tCvgOpt 0
+n@_opt
+OL;O;2019.2;69
+vbaud
+!s110 1710443296
+!i10b 1
+!s100 8S]dF:OT3PScJ9eD:m8l;3
+!s11b YDHbSNNDK<VmZACYHIbhU1
+IK33ZF>1>aGGWOmB=^dQcm3
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM
+w1704251174
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\baud.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\baud.v
+Z3 L0 18
+Z4 OL;L;2019.2;69
+r1
+!s85 0
+31
+Z5 !s108 1710443296.000000
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\baud.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\baud.v|
+!i113 0
+Z6 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R0
+vrow_ram
+!s110 1710443575
+!i10b 1
+!s100 8WlfomThJR@b9`9amI=R<1
+!s11b 7ETGdR9zK]^mAEId6hPIM3
+IUR=dBaLX?Q4[<Rallm<lc3
+R1
+R2
+w1710443542
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/row_ram.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/row_ram.v
+L0 6
+R4
+r1
+!s85 0
+31
+!s108 1710443575.000000
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/row_ram.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/row_ram.v|
+!i113 0
+R6
+R0
+vuart_bus
+Z7 !s110 1710443297
+!i10b 1
+!s100 ]0?44UnfXf9eBT>lH>Pe=1
+!s11b gbboTYB5F`Zn[aYkMPWR12
+IUSK7l034QI^;PjFbaKFiJ1
+R1
+R2
+w1710437361
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_bus.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_bus.v
+R3
+R4
+r1
+!s85 0
+31
+R5
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_bus.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_bus.v|
+!i113 0
+R6
+R0
+vuart_rx
+R7
+!i10b 1
+!s100 57`CkRjbBI86T8GLZoR2n3
+!s11b dffGVn_TNJKC5zWj[M`233
+I;iBK9=G?1N`:2nP_U?D2;0
+R1
+R2
+w1704251254
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_rx.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_rx.v
+R3
+R4
+r1
+!s85 0
+31
+Z8 !s108 1710443297.000000
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_rx.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_rx.v|
+!i113 0
+R6
+R0
+vuart_to_ram
+!s110 1710443372
+!i10b 1
+!s100 BR6BJ?jURH@ZdT`Ro=CNC0
+!s11b mHmj6VfOHT]gUoLK<VFmW0
+IiN;>z80lI:bLUE2@^mBbI3
+R1
+R2
+w1710443364
+8D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_to_ram.v
+FD:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_to_ram.v
+L0 11
+R4
+r1
+!s85 0
+31
+!s108 1710443372.000000
+!s107 D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_to_ram.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\UART-RAM\uart_to_ram.v|
+!i113 0
+R6
+R0
+vuart_tx
+R7
+!i10b 1
+!s100 =T56zhE1<N6>j@eGAI?Y?2
+!s11b <ghE_g>aYICObOA^]XdU92
+I?;i5G_LV<R17GL2aKWh4:2
+R1
+R2
+w1704251228
+8D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_tx.v
+FD:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_tx.v
+R3
+R4
+r1
+!s85 0
+31
+R8
+!s107 D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_tx.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/UART-RAM/uart_tx.v|
+!i113 0
+R6
+R0

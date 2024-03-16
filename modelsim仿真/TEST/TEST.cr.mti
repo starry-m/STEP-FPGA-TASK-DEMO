@@ -1,0 +1,43 @@
+D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_bar_tb.v {1 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_bar_tb.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module lcd_bar_tb
+
+Top level modules:
+	lcd_bar_tb
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_write.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_write.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module lcd_write
+
+Top level modules:
+	lcd_write
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_init.v {1 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_init.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module lcd_init
+
+Top level modules:
+	lcd_init
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_ram.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_ram.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module lcd_show_ram
+
+Top level modules:
+	lcd_show_ram
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_ram.v {1 {vlog -work work -vopt -stats=none D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_ram.v
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module lcd_ram
+
+Top level modules:
+	lcd_ram
+
+} {} {}} D:/1my_program_study/2024_winter_task/STEP_FPGA/MOD_SIM/TEST/lcd_show_row.v {1 {vlog -work work -vopt -stats=none {D:\1my_program_study\2024_winter_task\STEP_FPGA\MOD_SIM\TEST\lcd_show_row.v}
+Model Technology ModelSim SE-64 vlog 2019.2 Compiler 2019.04 Apr 17 2019
+-- Compiling module lcd_show_row
+
+Top level modules:
+	lcd_show_row
+
+} {} {}}
